@@ -106,7 +106,7 @@ describe("Модель сетевого графика", () => {
 
     expect(sut.check()).toBeFalsy();
   });
-  
+
   it("Если есть хвостовое событие, то график не корректный", () => {
     const sut = new WebChart("Сетевой график");
     TaskEvent.LAST_ID = 0;
@@ -132,7 +132,7 @@ describe("Модель сетевого графика", () => {
 
     expect(sut.check()).toBeFalsy();
   });
-  
+
   it("Если есть замкнутый контур, то график не корректный", () => {
     const sut = new WebChart("Сетевой график");
     TaskEvent.LAST_ID = 0;
@@ -141,7 +141,7 @@ describe("Модель сетевого графика", () => {
     const middle1 = new TaskEvent();
     const middle2 = new TaskEvent();
     const middle3 = new TaskEvent();
-    const middle4 = new TaskEvent(); 
+    const middle4 = new TaskEvent();
     Task.LAST_ID = 0;
     const task1 = new Task("Работа 1");
     const task2 = new Task("Работа 2");

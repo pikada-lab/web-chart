@@ -27,7 +27,7 @@ export class Task {
 
   constructor(
     public readonly name: string,
-    public readonly type: TaskType = TaskType.HARD
+    public readonly type: TaskType = TaskType.HARD,
   ) {
     this.id = ++Task.LAST_ID;
   }
