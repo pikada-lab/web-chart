@@ -195,6 +195,16 @@ describe("Полная проверка модели сетевого графи
     expect(E12.getEarlyDeadline()!.getDurationOnMinutes()).toBe(21);
     expect(E19.getLateDeadline()!.getDurationOnMinutes()).toBe(42);
     expect(E19.getEarlyDeadline()!.getDurationOnMinutes()).toBe(7);
-    expect(E19.getReserveTime()!.getDurationOnMinutes()).toBe(35);
+    expect(E19.getReserveTime().value.getDurationOnMinutes()).toBe(35);
+
+    expect(T5.getDuration()!.getDurationOnMinutes()).toBe(2);
+    expect(T5.next()!.getEarlyDeadline()!.getDurationOnMinutes()).toBe(6);
+    expect(T5.prev()!.getEarlyDeadline()!.getDurationOnMinutes()).toBe(4);
+    expect(T5.getFreeTimeReserve().value!.getDurationOnMinutes()).toBe(6 - 4 - 2);
+
+    expect(T6.getFreeTimeReserve().value!.getDurationOnMinutes()).toBe(6 - 4 - 2);
+    expect(T6.getFullTimeReserve().value!.getDurationOnMinutes()).toBe(16);
+    expect(E4.getReserveTime().value!.getDurationOnMinutes()).toBe(0);
+    expect(E8.getReserveTime().value!.getDurationOnMinutes()).toBe(16);
   });
 });

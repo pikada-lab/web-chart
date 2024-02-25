@@ -97,6 +97,13 @@ export class Task {
     return this.end;
   }
 
+  prev(): TaskEvent | null {
+    if (!this.isConnected) {
+      return null;
+    }
+    return this.start;
+  }
+
   connect(start: TaskEvent, end: TaskEvent): boolean {
     if (this.isConnected) {
       return false;
@@ -105,6 +112,9 @@ export class Task {
       return false;
     }
     if (end.isStart()) {
+      return false;
+    }
+    if (!start.canConnect(end)) {
       return false;
     }
     this.start = start;
@@ -122,16 +132,18 @@ export class Task {
    * Rп4,8 = Tп8 - Tр4 - t4,8
    * ```
    */
-  getFullTimeReserve() {
+  getFullTimeReserve(): Result<Duration> {
     if (!this.isConnected) {
-      return Duration.Empty();
+      return Result.failure("Нет событий, работа не встроена в график");
     }
     if (!this.hasDuration) {
-      return Duration.Empty();
+      return Result.failure("Нет продолжительности");
     }
-    return this.end!.getLateDeadline()!
-      .minus(this.start!.getEarlyDeadline()!)
-      .minus(this.duration!);
+    return Result.success(
+      this.end!.getLateDeadline()!
+        .minus(this.start!.getEarlyDeadline()!)
+        .minus(this.duration!)
+    );
   }
 
   /**
@@ -141,16 +153,18 @@ export class Task {
    * Rп4,8 = Tр8 - Tр4 - t4,8
    * ```
    */
-  getFreeTimeReserve() {
+  getFreeTimeReserve(): Result<Duration> {
     if (!this.isConnected) {
-      return Duration.Empty();
+      return Result.failure("Нет событий, работа не встроена в график");
     }
     if (!this.hasDuration) {
-      return Duration.Empty();
+      return Result.failure("Нет продолжительности");
     }
-    return this.end!.getEarlyDeadline()!
-      .minus(this.start!.getEarlyDeadline()!)
-      .minus(this.duration!);
+    return Result.success(
+      this.end!.getEarlyDeadline()!
+        .minus(this.start!.getEarlyDeadline()!)
+        .minus(this.duration!)
+    );
   }
 }
 
@@ -203,13 +217,13 @@ export class TaskEvent {
   /**
    * Резерв времени для события
    */
-  getReserveTime(): Duration {
+  getReserveTime(): Result<Duration> {
     if (this.earlyDeadline === null || this.lateDeadline === null) {
-      throw new Error(
+      return Result.failure(
         "Резерв времени можно вычислить только после определения времени свершения каждого события"
       );
     }
-    return this.lateDeadline!.minus(this.earlyDeadline!)!;
+    return Result.success(this.lateDeadline!.minus(this.earlyDeadline!));
   }
 
   nextItems(): Task[] {
@@ -262,6 +276,20 @@ export class TaskEvent {
 
   toString() {
     return `(${this.id})`;
+  }
+
+  canConnect(end: TaskEvent): boolean {
+    if (this.output.length === 0) {
+      return true;
+    }
+
+    for (const task of this.output) {
+      if (task.next() === end) {
+        return false;
+      }
+    }
+
+    return true;
   }
 }
 

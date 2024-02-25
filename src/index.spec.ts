@@ -87,6 +87,16 @@ describe("Модель сетевого графика", () => {
     expect(sut.check().error).not.toBe("");
     expect(sut.check().isFailure).toBeTruthy();
   });
+  it("Нельзя добавить две работы с одного и того же события и с одним и тем же конечным событиям", () => {
+    const start = new TaskEvent(TypeEvent.START);
+    const end = new TaskEvent(TypeEvent.END);
+
+    const task = new Task("Original");
+    const double = new Task("Double");
+
+    expect(task.connect(start, end)).toBeTruthy();
+    expect(double.connect(start, end)).toBeFalsy();
+  });
 
   it("Если из начала нельзя попасть в конец, то график не корректный", () => {
     const sut = new WebChart("Сетевой график");
@@ -449,10 +459,11 @@ describe("Модель сетевого графика", () => {
 
     const sut = task.getFullTimeReserve();
 
-    expect(sut).toBeInstanceOf(Duration);
-    expect(end.getReserveTime()).toBeInstanceOf(Duration);
-    expect(sut.getDurationOnMinutes()).toBe(23 - 12 - 2);
-    expect(end.getReserveTime().getDurationOnMinutes()).toBe(23 - 18);
+    expect(sut.error).toBe("");
+    expect(sut.value).toBeInstanceOf(Duration);
+    expect(end.getReserveTime().value).toBeInstanceOf(Duration);
+    expect(sut.value.getDurationOnMinutes()).toBe(23 - 12 - 2);
+    expect(end.getReserveTime().value.getDurationOnMinutes()).toBe(23 - 18);
   });
 
   it("Должен корректно высчитываться Свободный Резерв времени", () => {
@@ -468,7 +479,8 @@ describe("Модель сетевого графика", () => {
 
     const sut = task.getFreeTimeReserve();
 
-    expect(sut).toBeInstanceOf(Duration);
-    expect(sut.getDurationOnMinutes()).toBe(18 - 12 - 2);
+    expect(sut.error).toBe("");
+    expect(sut.value).toBeInstanceOf(Duration);
+    expect(sut.value.getDurationOnMinutes()).toBe(18 - 12 - 2);
   });
 });
