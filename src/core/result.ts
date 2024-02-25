@@ -62,7 +62,7 @@ export class Result<T> {
         "Ошибка аргумента Result::map(fn) - fn должна быть функцией"
       );
     }
-     
+
     const result = fn(this.value);
     if (result instanceof Result) {
       return result;

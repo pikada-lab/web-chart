@@ -1,49 +1,13 @@
-import { Duration } from "./core/duration";
-import { Task, TaskEvent, TypeEvent, WebChart, WorkPath } from "./index";
+import { Duration } from "../core/duration";
+import { Task } from "./task";
+import { TaskEvent } from "./task-event";
+import { TypeEvent } from "./type-event.enum";
+import { WebChart } from "./web-chart";
+import { WorkPath } from "./work-path";
 
-describe("Модель сетевого графика", () => {
-  it("Работа должна создаваться с названием и идентификатором", () => {
-    Task.LAST_ID = 0;
-    expect(new Task("Работа 1").id).toBe(1);
-  });
-  it("Событие должно содержать корректный тип: Начало", () => {
-    const sut = new TaskEvent(TypeEvent.START);
-    expect(sut.isStart()).toBeTruthy();
-    expect(sut.isDefault()).toBeFalsy();
-    expect(sut.isEnd()).toBeFalsy();
-  });
-
-  it("Событие должно содержать корректный тип: Окончание", () => {
-    const sut = new TaskEvent(TypeEvent.END);
-    expect(sut.isStart()).toBeFalsy();
-    expect(sut.isDefault()).toBeFalsy();
-    expect(sut.isEnd()).toBeTruthy();
-  });
-
-  it("Событие должно содержать корректный тип: По умолчанию", () => {
-    const sut = new TaskEvent();
-    expect(sut.isStart()).toBeFalsy();
-    expect(sut.isDefault()).toBeTruthy();
-    expect(sut.isEnd()).toBeFalsy();
-  });
-
-  it("Работа должна корректно соединяться с событиями", () => {
-    TaskEvent.LAST_ID = 0;
-    const start = new TaskEvent(TypeEvent.START);
-    const end = new TaskEvent(TypeEvent.END);
-    const task = new Task("Работа 2");
-
-    const connect = task.connect(start, end);
-
-    expect(connect).toBeTruthy();
-    expect(task.hasConnect).toBeTruthy();
-    expect(task.key).toBe(`(1,2)`);
-    expect(start.next()).toBe(task);
-    expect(task.next()).toBe(end);
-  });
-
+describe("Сетевой график", () => {
   it("Должен создаваться простой сетевой график", () => {
-    const sut = new WebChart("Сетевой график");
+    const sut = new WebChart(1, "Сетевой график");
     const start = new TaskEvent(TypeEvent.START);
     const end = new TaskEvent(TypeEvent.END);
     const task = new Task("Работа 3");
@@ -55,51 +19,22 @@ describe("Модель сетевого графика", () => {
     expect(sut.check()).toBeTruthy();
   });
 
-  it("Работа должна корректно устанавливать детерминированную продолжительность", () => {
-    const sut = new Task("KL1");
-    sut.setDuration(Duration.Create("5m").value);
-    expect(sut.hasDuration).toBeTruthy();
-    expect(sut.getDuration()).toBeInstanceOf(Duration);
-    expect(sut.getDuration().getDurationOnMinutes()).toBe(5);
-  });
-
-  it("Работа должна корректно устанавливать вероятностную продолжительность", () => {
-    const sut = new Task("KL1");
-    sut.setProbabilisticDuration(
-      Duration.Create("5m").value,
-      Duration.Create("6m").value,
-      Duration.Create("16m").value
-    );
-    expect(sut.hasDuration).toBeTruthy();
-    expect(sut.getDuration()).toBeInstanceOf(Duration);
-    expect(sut.getDuration().getDurationOnMinutes()).toBe(7.5);
-  });
   it("Если у сетевого графика нет начала, он некорректный", () => {
-    const sut = new WebChart("Сетевой график");
+    const sut = new WebChart(2, "Сетевой график");
     expect(sut.check().error).not.toBe("");
     expect(sut.check().isFailure).toBeTruthy();
   });
 
   it("Если у сетевого графика нет конца, он некорректный", () => {
-    const sut = new WebChart("Сетевой график");
+    const sut = new WebChart(3, "Сетевой график");
     const start = new TaskEvent(TypeEvent.START);
     sut.addBulk([start]);
     expect(sut.check().error).not.toBe("");
     expect(sut.check().isFailure).toBeTruthy();
   });
-  it("Нельзя добавить две работы с одного и того же события и с одним и тем же конечным событиям", () => {
-    const start = new TaskEvent(TypeEvent.START);
-    const end = new TaskEvent(TypeEvent.END);
-
-    const task = new Task("Original");
-    const double = new Task("Double");
-
-    expect(task.connect(start, end)).toBeTruthy();
-    expect(double.connect(start, end)).toBeFalsy();
-  });
 
   it("Если из начала нельзя попасть в конец, то график не корректный", () => {
-    const sut = new WebChart("Сетевой график");
+    const sut = new WebChart(4, "Сетевой график");
     const start = new TaskEvent(TypeEvent.START);
     const end = new TaskEvent(TypeEvent.END);
     const task = new Task("Работа 3");
@@ -111,7 +46,7 @@ describe("Модель сетевого графика", () => {
   });
 
   it("Если есть тупиковое событие, то график не корректный", () => {
-    const sut = new WebChart("Сетевой график");
+    const sut = new WebChart(5, "Сетевой график");
     TaskEvent.LAST_ID = 0;
     const start = new TaskEvent(TypeEvent.START);
     const end = new TaskEvent(TypeEvent.END);
@@ -132,7 +67,7 @@ describe("Модель сетевого графика", () => {
   });
 
   it("Если есть хвостовое событие, то график не корректный", () => {
-    const sut = new WebChart("Сетевой график");
+    const sut = new WebChart(6, "Сетевой график");
     TaskEvent.LAST_ID = 0;
     const start = new TaskEvent(TypeEvent.START);
     const end = new TaskEvent(TypeEvent.END);
@@ -153,7 +88,7 @@ describe("Модель сетевого графика", () => {
   });
 
   it("Если есть замкнутый контур, то график не корректный", () => {
-    const sut = new WebChart("Сетевой график");
+    const sut = new WebChart(7, "Сетевой график");
     TaskEvent.LAST_ID = 0;
     const start = new TaskEvent(TypeEvent.START);
     const end = new TaskEvent(TypeEvent.END);
@@ -194,7 +129,7 @@ describe("Модель сетевого графика", () => {
     expect(sut.check().isFailure).toBeTruthy();
   });
   it("Должен корректно высчитывать количество путей сетевого графика", () => {
-    const sut = new WebChart("Сетевой график");
+    const sut = new WebChart(8, "Сетевой график");
     TaskEvent.LAST_ID = 0;
     const start = new TaskEvent(TypeEvent.START);
     const end = new TaskEvent(TypeEvent.END);
@@ -247,44 +182,8 @@ describe("Модель сетевого графика", () => {
     expect(pathes[1].getName()).toBe("L2");
   });
 
-  it("Путь должен корректно расчитывать длину", () => {
-    // Arrange
-    const sut = new WorkPath();
-
-    TaskEvent.LAST_ID = 0;
-    const start = new TaskEvent(TypeEvent.START);
-    const end = new TaskEvent(TypeEvent.END);
-    const middle = new TaskEvent();
-    Task.LAST_ID = 0;
-    const task1 = new Task("Работа 1");
-    const task2 = new Task("Работа 2");
-
-    task1.setDuration(Duration.Create("12m").value);
-    task2.setDuration(Duration.Create("28m").value);
-
-    task1.connect(start, middle);
-    task2.connect(middle, end);
-
-    sut.add(start);
-    sut.add(task1);
-    sut.add(middle);
-    sut.add(task2);
-    sut.add(end);
-    sut.updateLength();
-    const duration = Duration.Create("40m").value;
-    //               12m                    28m
-    // (Start,1) ---(1,2)--> (Middle,2) ---(2,3)--> (End, 3)
-    //                          =40m
-
-    // Act
-    const length = sut.length();
-
-    // Assert
-    expect(length.getDurationOnMinutes()).toBe(40);
-    expect(duration.equal(length)).toBeTruthy();
-  });
   it("Сетевой график должен находить путь максимальной длины", () => {
-    const sut = new WebChart("Сетевой график 3");
+    const sut = new WebChart(9, "Сетевой график 3");
     TaskEvent.LAST_ID = 0;
     const start = new TaskEvent(TypeEvent.START);
     const end = new TaskEvent(TypeEvent.END);
@@ -346,22 +245,8 @@ describe("Модель сетевого графика", () => {
     expect(maxLengthPath?.length().getDurationOnMinutes()).toBe(20);
   });
 
-  it("В событие должен устанавливаться ранний срок свершения события", () => {
-    const sut = new TaskEvent();
-    sut.setEarlyDeadline(Duration.Create("20m").value);
-    expect(sut.getEarlyDeadline()).toBeInstanceOf(Duration);
-    expect(sut.getEarlyDeadline()!.getDurationOnMinutes()).toBe(20);
-  });
-
-  it("В событие должен устанавливаться поздний срок свершения события", () => {
-    const sut = new TaskEvent();
-    sut.setLateDeadline(Duration.Create("20m").value);
-    expect(sut.getLateDeadline()).toBeInstanceOf(Duration);
-    expect(sut.getLateDeadline()!.getDurationOnMinutes()).toBe(20);
-  });
-
   it("Сетевой график должен определять ранний и поздний срок свершения события между двумя ветвями", () => {
-    const sut = new WebChart("Сетевой график 3");
+    const sut = new WebChart(10, "Сетевой график 3");
     TaskEvent.LAST_ID = 0;
     const start = new TaskEvent(TypeEvent.START);
     const end = new TaskEvent(TypeEvent.END);
@@ -444,43 +329,5 @@ describe("Модель сетевого графика", () => {
     expect(middle3.getLateDeadline()!.getDurationOnMinutes()).toBe(12);
     expect(middle4.getLateDeadline()!.getDurationOnMinutes()).toBe(16);
     expect(middle5.getLateDeadline()!.getDurationOnMinutes()).toBe(10);
-  });
-
-  it("Должен корректно высчитываться Поздний Резерв времени", () => {
-    const start = new TaskEvent();
-    const end = new TaskEvent();
-    const task = new Task("Работа 1");
-    start.setEarlyDeadline(Duration.Create(12).value);
-    start.setLateDeadline(Duration.Create(15).value);
-    end.setEarlyDeadline(Duration.Create(18).value);
-    end.setLateDeadline(Duration.Create(23).value);
-    task.setDuration(Duration.Create(2).value);
-    task.connect(start, end);
-
-    const sut = task.getFullTimeReserve();
-
-    expect(sut.error).toBe("");
-    expect(sut.value).toBeInstanceOf(Duration);
-    expect(end.getReserveTime().value).toBeInstanceOf(Duration);
-    expect(sut.value.getDurationOnMinutes()).toBe(23 - 12 - 2);
-    expect(end.getReserveTime().value.getDurationOnMinutes()).toBe(23 - 18);
-  });
-
-  it("Должен корректно высчитываться Свободный Резерв времени", () => {
-    const start = new TaskEvent();
-    const end = new TaskEvent();
-    const task = new Task("Работа 1");
-    start.setEarlyDeadline(Duration.Create(12).value);
-    start.setLateDeadline(Duration.Create(15).value);
-    end.setEarlyDeadline(Duration.Create(18).value);
-    end.setLateDeadline(Duration.Create(23).value);
-    task.setDuration(Duration.Create(2).value);
-    task.connect(start, end);
-
-    const sut = task.getFreeTimeReserve();
-
-    expect(sut.error).toBe("");
-    expect(sut.value).toBeInstanceOf(Duration);
-    expect(sut.value.getDurationOnMinutes()).toBe(18 - 12 - 2);
   });
 });

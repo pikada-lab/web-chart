@@ -1,9 +1,13 @@
-import { Duration } from "./core/duration";
-import { Task, TaskEvent, TypeEvent, WebChart, WorkPath } from "./index";
+import { Duration } from "../core/duration";
+import { Task } from "./task";
+import { TaskEvent } from "./task-event";
+import { TypeEvent } from "./type-event.enum";
+import { WebChart } from "./web-chart";
+import { dto } from "./index.e2e.dto";
 
 describe("Полная проверка модели сетевого графика", () => {
   it("Должен выполнять подсчёт корректных данных", () => {
-    const sut = new WebChart("Учебный сетевой график");
+    const sut = new WebChart(101, "Учебный сетевой график");
     TaskEvent.LAST_ID = 0;
     Task.LAST_ID = 0;
     const E1 = new TaskEvent(TypeEvent.START);
@@ -119,7 +123,7 @@ describe("Полная проверка модели сетевого графи
     T26.connect(E16, E20);
     T26.setDuration(Duration.Create(12).value);
     T27.connect(E20, E22);
-    T27.setDuration(Duration.Create(7).value);
+    T27.setDuration(Duration.Create(2).value);
     T28.connect(E2, E19);
     T28.setDuration(Duration.Create(4).value);
     T29.connect(E19, E24);
@@ -200,11 +204,32 @@ describe("Полная проверка модели сетевого графи
     expect(T5.getDuration()!.getDurationOnMinutes()).toBe(2);
     expect(T5.next()!.getEarlyDeadline()!.getDurationOnMinutes()).toBe(6);
     expect(T5.prev()!.getEarlyDeadline()!.getDurationOnMinutes()).toBe(4);
-    expect(T5.getFreeTimeReserve().value!.getDurationOnMinutes()).toBe(6 - 4 - 2);
+    expect(T5.getFreeTimeReserve().value!.getDurationOnMinutes()).toBe(
+      6 - 4 - 2
+    );
 
-    expect(T6.getFreeTimeReserve().value!.getDurationOnMinutes()).toBe(6 - 4 - 2);
-    expect(T6.getFullTimeReserve().value!.getDurationOnMinutes()).toBe(16);
+    expect(T6.getFreeTimeReserve().value!.getDurationOnMinutes()).toBe(
+      6 - 4 - 2
+    );
+    expect(T6.getFullTimeReserve().value!.getDurationOnMinutes()).toBe(21);
     expect(E4.getReserveTime().value!.getDurationOnMinutes()).toBe(0);
-    expect(E8.getReserveTime().value!.getDurationOnMinutes()).toBe(16);
+    expect(E8.getReserveTime().value!.getDurationOnMinutes()).toBe(21);
+
+    expect(sut.toJSON()).toStrictEqual(dto);
+  });
+
+  it("Должна восстанавливаться из dto", () => {
+    const sutResult = WebChart.Restore(dto);
+
+    expect(sutResult.error).toBe("");
+    const sut = sutResult.value;
+
+    expect(sut.check().error).toBe("");
+    expect(sut.getPathes().error).toBe("");
+    expect(sut.getPathes().value.length).toBe(7);
+    expect(sut.getMaxLengthPath()!.length().getDurationOnMinutes()).toBe(50);
+    expect(sut.toJSON()).toStrictEqual(dto);
+
+    console.log(sut.toString());
   });
 });
