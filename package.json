@@ -7,7 +7,7 @@
     "start": "vite",
     "build": "vite build",
     "format": "prettier -w .",
-    "test": "bun test"
+    "test": "bun test --inspect-wait"
   },
   "devDependencies": {
     "@types/bun": "^1.0.6",
