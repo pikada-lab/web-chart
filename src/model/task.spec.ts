@@ -1,4 +1,6 @@
 import { Duration } from "../lib/duration";
+import { DeterministicWork } from "./deterministic-work";
+import { ProbabilisticWork } from "./probabilistic-work";
 import { Task } from "./task";
 import { TaskType } from "./task-type.enum";
 
@@ -10,7 +12,7 @@ describe("Модель работы в сетевом графике", () => {
 
   it("Работа должна корректно устанавливать детерминированную продолжительность", () => {
     const sut = new Task("KL1");
-    sut.setDuration(Duration.Create("5m").value);
+    sut.setWork(DeterministicWork.Create(Duration.Create("5m").value).value);
     expect(sut.hasDuration).toBeTruthy();
     expect(sut.getDuration()).toBeInstanceOf(Duration);
     expect(sut.getDuration().getDurationOnMinutes()).toBe(5);
@@ -18,11 +20,14 @@ describe("Модель работы в сетевом графике", () => {
 
   it("Работа должна корректно устанавливать вероятностную продолжительность", () => {
     const sut = new Task("KL1");
-    sut.setProbabilisticDuration(
-      Duration.Create("5m").value,
-      Duration.Create("6m").value,
-      Duration.Create("16m").value
+    sut.setWork(
+      ProbabilisticWork.Create(
+        Duration.Create("5m").value,
+        Duration.Create("6m").value,
+        Duration.Create("16m").value
+      ).value
     );
+
     expect(sut.hasDuration).toBeTruthy();
     expect(sut.getDuration()).toBeInstanceOf(Duration);
     expect(sut.getDuration().getDurationOnMinutes()).toBe(7.5);
@@ -37,10 +42,7 @@ describe("Модель работы в сетевом графике", () => {
       start: null,
       end: null,
       isConnected: false,
-      duration: null,
-      min: null,
-      max: null,
-      real: null,
+      work: { type: 0 },
     });
   });
   it("Должен из DTO приводить к объекту работы", () => {
@@ -51,22 +53,23 @@ describe("Модель работы в сетевом графике", () => {
       start: null,
       end: null,
       isConnected: false,
-      duration: '10m',
-      min: '4m',
-      max: '20m',
-      normal: '30m',
-      real: null,
+      work: {
+        type: 2,
+        min: "4m",
+        max: "30m",
+        real: "20m",
+      },
     };
 
     const taskResult = Task.Restore(dto);
 
-    expect(taskResult.error).toBe('');
+    expect(taskResult.error).toBe("");
     expect(taskResult.value).toBeInstanceOf(Task);
     expect(taskResult.value.id).toBe(1);
     expect(taskResult.value.name).toBe("Работа 1");
     expect(taskResult.value.type).toBe(TaskType.HARD);
     expect(taskResult.value.getDuration()).toBeInstanceOf(Duration);
-    expect(taskResult.value.getDuration().getDurationOnMinutes()).toBe(10);
+    expect(taskResult.value.getDuration().getDurationOnMinutes()).toBe(19);
     expect(taskResult.value.hasConnect).toBeFalsy();
   });
 });

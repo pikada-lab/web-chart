@@ -1,4 +1,5 @@
 import { Duration } from "../lib/duration";
+import { DeterministicWork } from "./deterministic-work";
 import { Task } from "./task";
 import { TaskEvent } from "./task-event";
 import { TypeEvent } from "./type-event.enum";
@@ -199,13 +200,13 @@ describe("Сетевой график", () => {
     const task5 = new Task("Работа 5");
     const task6 = new Task("Работа 6");
 
-    task1.setDuration(Duration.Create(2).value);
-    task2.setDuration(Duration.Create(12).value);
-    task3.setDuration(Duration.Create(4).value);
+    task1.setWork(DeterministicWork.Create(Duration.Create(2).value).value);
+    task2.setWork(DeterministicWork.Create(Duration.Create(12).value).value);
+    task3.setWork(DeterministicWork.Create(Duration.Create(4).value).value);
 
-    task4.setDuration(Duration.Create(5).value);
-    task5.setDuration(Duration.Create(5).value);
-    task6.setDuration(Duration.Create(4).value);
+    task4.setWork(DeterministicWork.Create(Duration.Create(5).value).value);
+    task5.setWork(DeterministicWork.Create(Duration.Create(5).value).value);
+    task6.setWork(DeterministicWork.Create(Duration.Create(4).value).value);
     /**
      * ```
      *          2             12             4
@@ -264,14 +265,14 @@ describe("Сетевой график", () => {
     const task6 = new Task("Работа 6");
     const task7 = new Task("Работа 7");
 
-    task1.setDuration(Duration.Create(2).value);
-    task2.setDuration(Duration.Create(6).value);
-    task3.setDuration(Duration.Create(4).value);
+    task1.setWork(DeterministicWork.Create(Duration.Create(2).value).value);
+    task2.setWork(DeterministicWork.Create(Duration.Create(6).value).value);
+    task3.setWork(DeterministicWork.Create(Duration.Create(4).value).value);
 
-    task4.setDuration(Duration.Create(5).value);
-    task5.setDuration(Duration.Create(5).value);
-    task6.setDuration(Duration.Create(4).value);
-    task7.setDuration(Duration.Create(6).value);
+    task4.setWork(DeterministicWork.Create(Duration.Create(5).value).value);
+    task5.setWork(DeterministicWork.Create(Duration.Create(5).value).value);
+    task6.setWork(DeterministicWork.Create(Duration.Create(4).value).value);
+    task7.setWork(DeterministicWork.Create(Duration.Create(6).value).value);
     /**
      * ```
      *          2       6          6         4

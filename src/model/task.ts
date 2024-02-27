@@ -3,6 +3,11 @@ import { Duration } from "../lib/duration";
 import { Result } from "../lib/result";
 import { TaskType } from "./task-type.enum";
 import { TaskDTO } from "./task.dto";
+import { Work } from "./work";
+import { WorkDTO, WorkType } from "./work.type";
+import { ProbabilisticWork } from "./probabilistic-work";
+import { NotSetWork } from "./not-set-work";
+import { DeterministicWork } from "./deterministic-work";
 
 /**
  * Работа
@@ -12,21 +17,18 @@ export class Task {
   static LAST_ID = 0;
   id: number;
   // Время
-  private duration: Duration | null = null;
+  private work: Work<WorkDTO> = NotSetWork.Create().value;
+
   // Граф
   private start: TaskEvent | null = null;
   private end: TaskEvent | null = null;
   private isConnected: boolean = false;
 
-  private min: Duration | null = null;
-  private max: Duration | null = null;
-  private normal: Duration | null = null;
-  private real: Duration | null = null;
   /**
    * Имеет продолжительность
    */
   get hasDuration(): boolean {
-    return this.duration !== null;
+    return this.work.valueOf() !== 0;
   }
 
   /**
@@ -49,43 +51,28 @@ export class Task {
   ) {
     this.id = ++Task.LAST_ID;
   }
-
   /**
-   * Установить детерминированную продолжительность
-   *
-   * Продолжительность согласно нормативам
+   * Установить детерминированную продолжительность работы
+   * Установить вероятностную продолжительность работы
+   * Установить отсутствие оценки времени работы
    */
-  setDuration(duration: Duration): void {
-    if (duration.getDurationOnMinutes() < 0) {
-      return;
-    }
-    this.normal = duration;
-    this.duration = duration;
-  }
-
-  /**
-   * Установить вероятностную продолжительность
-   *
-   * @param min - Минимальное время на выполнение работ - Соответствующую наиболее благоприятному выполнению работ
-   * @param real - Наиболее вероятное время выполнения работ - которая может иметь место в реальных условиях при обычном ходе работы
-   * @param max - Максимальное время выполнения работ - с учётом наихудшего стечения обстоятельств
-   */
-  setProbabilisticDuration(min: Duration, real: Duration, max: Duration): void {
-    this.min = min;
-    this.real = real;
-    this.max = max;
-    this.duration = min.sum(max).sum(real.times(4)).division(6).value;
+  setWork(work: Work<WorkDTO>): this {
+    this.work = work;
+    return this;
   }
 
   toString() {
     return `--- ${this.getDuration().value} -->`;
   }
 
+  /**
+   * Конечная продолжительность
+   */
   getDuration(): Duration {
     if (!this.hasDuration) {
       return Duration.Empty();
     }
-    return this.duration!;
+    return this.work.getDuration()!;
   }
 
   next(): TaskEvent | null {
@@ -140,7 +127,7 @@ export class Task {
     return Result.success(
       this.end!.getLateDeadline()!
         .minus(this.start!.getEarlyDeadline()!)
-        .minus(this.duration!)
+        .minus(this.work.getDuration()!)
     );
   }
 
@@ -161,7 +148,7 @@ export class Task {
     return Result.success(
       this.end!.getEarlyDeadline()!
         .minus(this.start!.getEarlyDeadline()!)
-        .minus(this.duration!)
+        .minus(this.work.getDuration()!)
     );
   }
 
@@ -174,18 +161,21 @@ export class Task {
     }
     const task = new Task(dto.name, dto.type);
     task.id = dto.id;
-    if (dto.duration) {
-      task.setDuration(Duration.Create(dto.duration).value);
+    const work = this.restoreWork(dto);
+    if (work.isFailure) {
+      return Result.reFailure(work);
     }
-    if (dto.min && dto.max && dto.real) {
-      task.setProbabilisticDuration(
-        Duration.Create(dto.min).value,
-        Duration.Create(dto.real).value,
-        Duration.Create(dto.max).value
-      );
-    }
-
+    task.setWork(work.value);
     return Result.success(task);
+  }
+
+  private static restoreWork(dto: TaskDTO): Result<Work<WorkDTO>> {
+    if (dto.work.type === WorkType.DETERMINISTIC) {
+      return DeterministicWork.Restore(dto.work);
+    } else if (dto.work.type === WorkType.PROBABILISTIC) {
+      return ProbabilisticWork.Restore(dto.work);
+    }
+    return NotSetWork.Create();
   }
 
   toJSON(): TaskDTO {
@@ -198,10 +188,7 @@ export class Task {
       end: this.end?.getId() ?? null,
       isConnected: this.isConnected,
       // Временные характеристики
-      duration: this.duration?.value ?? null,
-      min: this.min?.value ?? null,
-      max: this.max?.value ?? null,
-      real: this.real?.value ?? null,
+      work: this.work.toJSON(),
     };
   }
 }

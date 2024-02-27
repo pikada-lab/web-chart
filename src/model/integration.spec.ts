@@ -1,4 +1,5 @@
 import { Duration } from "../lib/duration";
+import { DeterministicWork } from "./deterministic-work";
 import { Task } from "./task";
 import { TaskEvent } from "./task-event";
 import { TypeEvent } from "./type-event.enum";
@@ -38,7 +39,7 @@ describe("Интеграционный тест работы и события",
     start.setLateDeadline(Duration.Create(15).value);
     end.setEarlyDeadline(Duration.Create(18).value);
     end.setLateDeadline(Duration.Create(23).value);
-    task.setDuration(Duration.Create(2).value);
+    task.setWork(DeterministicWork.Create(Duration.Create(2).value).value);
     task.connect(start, end);
 
     const sut = task.getFullTimeReserve();
@@ -58,7 +59,7 @@ describe("Интеграционный тест работы и события",
     start.setLateDeadline(Duration.Create(15).value);
     end.setEarlyDeadline(Duration.Create(18).value);
     end.setLateDeadline(Duration.Create(23).value);
-    task.setDuration(Duration.Create(2).value);
+    task.setWork(DeterministicWork.Create(Duration.Create(2).value).value);
     task.connect(start, end);
 
     const sut = task.getFreeTimeReserve();
@@ -78,20 +79,20 @@ describe("Интеграционный тест работы и события",
     start.setLateDeadline(Duration.Create(15).value);
     end.setEarlyDeadline(Duration.Create(18).value);
     end.setLateDeadline(Duration.Create(23).value);
-    task.setDuration(Duration.Create(2).value);
+    task.setWork(DeterministicWork.Create(Duration.Create(2).value).value);
     task.connect(start, end);
 
     expect(task.toJSON()).toStrictEqual({
-      duration: "2m",
-      end: 2,
       id: 101,
-      isConnected: true,
-      max: null,
-      min: null,
       name: "Работа 1",
-      real: null,
-      start: 1,
       type: 1,
+      end: 2,
+      start: 1,
+      work: {
+        type: 1,
+        normal: "2m",
+      },
+      isConnected: true,
     });
 
     expect(start.toJSON()).toStrictEqual({

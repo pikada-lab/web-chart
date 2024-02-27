@@ -1,4 +1,5 @@
 import { Duration } from "../lib/duration";
+import { DeterministicWork } from "./deterministic-work";
 import { Task } from "./task";
 import { TaskEvent } from "./task-event";
 import { TypeEvent } from "./type-event.enum";
@@ -17,8 +18,8 @@ describe("Путь в сетевом графике", () => {
     const task1 = new Task("Работа 1");
     const task2 = new Task("Работа 2");
 
-    task1.setDuration(Duration.Create("12m").value);
-    task2.setDuration(Duration.Create("28m").value);
+    task1.setWork(DeterministicWork.Create(Duration.Create(12).value).value);
+    task2.setWork(DeterministicWork.Create(Duration.Create(28).value).value);
 
     task1.connect(start, middle);
     task2.connect(middle, end);
