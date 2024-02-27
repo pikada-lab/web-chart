@@ -1,6 +1,6 @@
 import { TaskEvent } from "./task-event";
-import { Duration } from "../core/duration";
-import { Result } from "../core/result";
+import { Duration } from "../lib/duration";
+import { Result } from "../lib/result";
 import { TaskType } from "./task-type.enum";
 import { TaskDTO } from "./task.dto";
 

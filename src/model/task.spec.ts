@@ -1,4 +1,4 @@
-import { Duration } from "../core/duration";
+import { Duration } from "../lib/duration";
 import { Task } from "./task";
 import { TaskType } from "./task-type.enum";
 

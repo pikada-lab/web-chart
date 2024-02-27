@@ -1,4 +1,4 @@
-import { Result } from "../core/result";
+import { Result } from "../lib/result";
 import { WebChart } from "./web-chart";
 
 export class WebChartRepository {

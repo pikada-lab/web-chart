@@ -1,4 +1,4 @@
-import { Result } from "../core/result";
+import { Result } from "../lib/result";
 import { Task } from "./task";
 import { TaskEvent } from "./task-event";
 import { WebChartDTO } from "./web-chart.dto";
