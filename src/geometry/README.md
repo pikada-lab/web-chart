@@ -5,7 +5,7 @@
 ### Point - Точка
 
 ```typescript
-const point = new Point();
+const point = new Point(100, 200);
 ```
 
 ### Circle - Окружность
@@ -17,7 +17,7 @@ const circle = new Circle(new Point(100, 200), 30);
 ### Line - Линия
 
 ```typescript
-const circle = new Line(new Point(100, 200), new Point(1400, 2200));
+const line = new Line(new Point(100, 200), new Point(1400, 2200));
 ```
 
 ### Функция pointInPolygon
