@@ -1,6 +1,5 @@
-import { Duration } from "../lib/duration";
+import { Duration } from "../../lib/duration";
 import { DeterministicWork } from "./deterministic-work";
-import { WorkType } from "./work.type";
 
 describe("Детерменированное работа", () => {
   it("Должна корректно создаваться", () => {
@@ -10,7 +9,7 @@ describe("Детерменированное работа", () => {
     expect(result.value.valueOf()).toBe(10);
     expect(result.value.getDuration().getDurationOnMinutes()).toBe(10);
     expect(result.value.toJSON()).toStrictEqual({
-      type: WorkType.DETERMINISTIC,
+      type: 1,
       normal: "10m",
     });
   });

@@ -1,5 +1,5 @@
 import { Duration } from "../lib/duration";
-import { DeterministicWork } from "./deterministic-work";
+import { DeterministicWork } from "./work/deterministic-work";
 import { Task } from "./task";
 import { TaskEvent } from "./task-event";
 import { TypeEvent } from "./type-event.enum";

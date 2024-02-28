@@ -3,11 +3,11 @@ import { Duration } from "../lib/duration";
 import { Result } from "../lib/result";
 import { TaskType } from "./task-type.enum";
 import { TaskDTO } from "./task.dto";
-import { Work } from "./work";
-import { WorkDTO, WorkType } from "./work.type";
-import { ProbabilisticWork } from "./probabilistic-work";
-import { NotSetWork } from "./not-set-work";
-import { DeterministicWork } from "./deterministic-work";
+import { WorkDTO, WorkType } from "./work/";
+import { ProbabilisticWork } from "./work/probabilistic-work";
+import { NotSetWork } from "./work/not-set-work";
+import { DeterministicWork } from "./work/deterministic-work";
+import { Work } from "./work/work";
 
 /**
  * Работа

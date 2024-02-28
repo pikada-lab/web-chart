@@ -11,7 +11,75 @@ describe("Продолжительность во времени", () => {
     // Assert
     expect(sut.isFailure).toBeFalsy();
     expect(sut.value).toBeInstanceOf(Duration);
+    expect(sut.value.getDurationOnMinutes()).toBe(50);
   });
+  it("Должен корректно создвавть 50", () => {
+    // Arrange
+    const value = 50;
+
+    // Act
+    const sut = Duration.Create(value);
+
+    // Assert
+    expect(sut.isFailure).toBeFalsy();
+    expect(sut.value).toBeInstanceOf(Duration);
+    expect(sut.value.getDurationOnMinutes()).toBe(50);
+  });
+  it("Должен корректно создвавть 1h", () => {
+    // Arrange
+    const value = "1h";
+
+    // Act
+    const sut = Duration.Create(value);
+
+    // Assert
+    expect(sut.isFailure).toBeFalsy();
+    expect(sut.value).toBeInstanceOf(Duration);
+    expect(sut.value.getDurationOnMinutes()).toBe(60);
+    expect(sut.value.value).toBe(value);
+  });
+  it("Должен корректно создвавть 1d", () => {
+    // Arrange
+    const value = "1d";
+
+    // Act
+    const sut = Duration.Create(value);
+
+    // Assert
+    expect(sut.isFailure).toBeFalsy();
+    expect(sut.value).toBeInstanceOf(Duration);
+    expect(sut.value.getDurationOnMinutes()).toBe(8 * 60);
+    expect(sut.value.value).toBe(value);
+  });
+  it("Должен корректно создвавть 2w", () => {
+    // Arrange
+    const value = "2w";
+
+    // Act
+    const sut = Duration.Create(value);
+
+    // Assert
+    expect(sut.isFailure).toBeFalsy();
+    expect(sut.value).toBeInstanceOf(Duration);
+    expect(sut.value.getDurationOnMinutes()).toBe(5 * 8 * 2 * 60);
+    expect(sut.value.value).toBe(value);
+  });
+  it("Должен корректно создвавть 3w", () => {
+    // Arrange
+    const value = "2w";
+
+    // Act
+    const sut = Duration.Create(value).value.sum(Duration.Create("1w").value);
+
+    // Assert
+    expect(sut.getDurationOnMinutes()).toBe(5 * 8 * 3 * 60);
+    expect(sut.value).toBe("3w");
+  });
+  it("Должен корректно пересчитывать временные характеристики", () => {
+    const duration = Duration.Create(60 * 8 * 5 + 2 * 60 * 8 + 3 * 60 + 4).value;
+
+    expect(duration.value).toBe('1w 2d 3h 4m');
+  })
   it("Должен создавать только корректные значения", () => {
     // Arrange
     const value = "T_T";
@@ -104,5 +172,103 @@ describe("Продолжительность во времени", () => {
 
     // Assert
     expect(sut).toBeTruthy();
+  });
+  it("Должен корректно возвращать дни 3d", () => {
+    // Arrange
+    const value = "1w 3d 6h 12m";
+
+    // Act
+    const sut = Duration.Create(value);
+
+    // Assert
+    expect(sut.isFailure).toBeFalsy();
+    expect(sut.value).toBeInstanceOf(Duration);
+    expect(sut.value.getDays()).toBe(3);
+  });
+  it("Должен корректно возвращать часы 6h", () => {
+    // Arrange
+    const value = "1w 3d 6h 12m";
+
+    // Act
+    const sut = Duration.Create(value);
+
+    // Assert
+    expect(sut.isFailure).toBeFalsy();
+    expect(sut.value).toBeInstanceOf(Duration);
+    expect(sut.value.getHours()).toBe(6);
+  });
+  it("Должен корректно возвращать минуты 12m", () => {
+    // Arrange
+    const value = "1w 3d 6h 12m";
+
+    // Act
+    const sut = Duration.Create(value);
+
+    // Assert
+    expect(sut.isFailure).toBeFalsy();
+    expect(sut.value).toBeInstanceOf(Duration);
+    expect(sut.value.getMinutes()).toBe(12);
+  });
+  it("Должен корректно возвращать минуты 1w", () => {
+    // Arrange
+    const value = "1w 3d 6h 12m";
+
+    // Act
+    const sut = Duration.Create(value);
+
+    // Assert
+    expect(sut.isFailure).toBeFalsy();
+    expect(sut.value).toBeInstanceOf(Duration);
+    expect(sut.value.getWeeks()).toBe(1);
+  });
+  
+  
+  it("Должен корректно возвращать дни 0d", () => {
+    // Arrange
+    const value = "1w 6h 12m";
+
+    // Act
+    const sut = Duration.Create(value);
+
+    // Assert
+    expect(sut.isFailure).toBeFalsy();
+    expect(sut.value).toBeInstanceOf(Duration);
+    expect(sut.value.getDays()).toBe(0);
+  });
+  it("Должен корректно возвращать часы 0h", () => {
+    // Arrange
+    const value = "1w 3d 12m";
+
+    // Act
+    const sut = Duration.Create(value);
+
+    // Assert
+    expect(sut.isFailure).toBeFalsy();
+    expect(sut.value).toBeInstanceOf(Duration);
+    expect(sut.value.getHours()).toBe(0);
+  });
+  it("Должен корректно возвращать минуты 0m", () => {
+    // Arrange
+    const value = "1w 3d 6h";
+
+    // Act
+    const sut = Duration.Create(value);
+
+    // Assert
+    expect(sut.isFailure).toBeFalsy();
+    expect(sut.value).toBeInstanceOf(Duration);
+    expect(sut.value.getMinutes()).toBe(0);
+  });
+  it("Должен корректно возвращать минуты 0w", () => {
+    // Arrange
+    const value = "3d 6h 12m";
+
+    // Act
+    const sut = Duration.Create(value);
+
+    // Assert
+    expect(sut.isFailure).toBeFalsy();
+    expect(sut.value).toBeInstanceOf(Duration);
+    expect(sut.value.getWeeks()).toBe(0);
   });
 });

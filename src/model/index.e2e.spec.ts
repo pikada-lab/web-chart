@@ -3,8 +3,9 @@ import { Task } from "./task";
 import { TaskEvent } from "./task-event";
 import { TypeEvent } from "./type-event.enum";
 import { WebChart } from "./web-chart";
-import { dto } from "./index.e2e.dto";
-import { DeterministicWork } from "./deterministic-work";
+import { dto } from "./testing/index.e2e.dto";
+import { DeterministicWork } from "./work/deterministic-work";
+import { StandardCalendar } from "./calendar/standard-calendar";
 
 describe("Полная проверка модели сетевого графика", () => {
   it("Должен выполнять подсчёт корректных данных", () => {
@@ -219,15 +220,20 @@ describe("Полная проверка модели сетевого графи
   });
 
   it("Должна восстанавливаться из dto", () => {
-    const sutResult = WebChart.Restore(dto);
-
-    expect(sutResult.error).toBe("");
-    const sut = sutResult.value;
+    const wdto = structuredClone(dto);
+    wdto.tasks.forEach((t) => {
+      t.work.normal = t.work.normal.replace(/(m)/, "w");
+    });
+    const sut = WebChart.Restore(wdto).value;
 
     expect(sut.check().error).toBe("");
     expect(sut.getPathes().error).toBe("");
     expect(sut.getPathes().value.length).toBe(7);
-    expect(sut.getMaxLengthPath()!.length().getDurationOnMinutes()).toBe(50);
-    expect(sut.toJSON()).toStrictEqual(dto);
+    expect(sut.getMaxLengthPath()!.length().getWeeks()).toBe(50);
+    expect(sut.toJSON()).toStrictEqual(wdto);
+
+    console.table(
+      sut.getListOfWork(new Date("2024-01-01"), new StandardCalendar())
+    );
   });
 });

@@ -21,7 +21,13 @@ export class WorkPath {
   }
 
   toString(): string {
-    return  this.getName() + ' = ' + this.duration.value + ' >> ' + this.path.map((r) => r.toString()).join(" ");
+    return (
+      this.getName() +
+      " = " +
+      this.duration.value +
+      " >> " +
+      this.path.map((r) => r.toString()).join(" ")
+    );
   }
 
   public length(): Duration {
@@ -83,5 +89,9 @@ export class WorkPath {
     const path = new WorkPath();
     path.path = [...this.path];
     return path;
+  }
+
+  has(task: Task | TaskEvent): unknown {
+    return this.path.some((t) => t === task);
   }
 }

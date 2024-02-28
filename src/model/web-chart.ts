@@ -1,4 +1,5 @@
 import { Result } from "../lib/result";
+import { Calendar } from "./calendar/calendar";
 import { Task } from "./task";
 import { TaskEvent } from "./task-event";
 import { WebChartDTO } from "./web-chart.dto";
@@ -46,9 +47,13 @@ export class WebChart {
     return this.maxLengthPath;
   }
 
+  private creatreWorkPath(): WorkPath {
+    return new WorkPath();
+  }
+
   private updatePathes(): void {
     const pathesResult = this.check().map(() =>
-      this.createPathes(new WorkPath(), this.start!).map((l, i) =>
+      this.createPathes(this.creatreWorkPath(), this.start!).map((l, i) =>
         l.setName(i + 1)
       )
     );
@@ -233,5 +238,61 @@ export class WebChart {
 
   toString(): string {
     return `# ${this.title} / ${this.id}\n\n${this.pathes.map((r) => r.toString()).join("\n")}`;
+  }
+
+  getPathesByTask(task: Task): WorkPath[] {
+    return this.pathes.filter((path) => path.has(task));
+  }
+
+  getListOfWork(
+    dateStart: Date,
+    calendar: Calendar
+  ): {
+    num: string;
+    work: string;
+    startEarly: Date;
+    startLate: Date | null;
+    duration: string;
+    endEarly: Date | null;
+    endLate: Date;
+  }[] {
+    const result = [];
+    for (let item of this.tasks) {
+      const startEarly = calendar.forward(
+        dateStart,
+        item.prev()!.getEarlyDeadline()!
+      );
+      const startLate = calendar.forward(
+        dateStart,
+        item.prev()!.getLateDeadline()!
+      );
+      const endEarly = calendar.forward(
+        dateStart,
+        item.next()!.getEarlyDeadline()!
+      );
+      const endLate = calendar.forward(
+        dateStart,
+        item.next()!.getLateDeadline()!
+      );
+      result.push({
+        num: item.key,
+        work: item.name,
+        pathes: this.getPathesByTask(item)
+          .map((r) => r.getName())
+          .join(", "),
+        startEarly: startEarly,
+        startLate:
+          startEarly.valueOf() === startLate.valueOf() ? null : startLate,
+        duration: item.getDuration().value,
+        endEarly: endEarly.valueOf() === endLate.valueOf() ? null : endEarly,
+        endLate: endLate,
+        reserveFree: item.getFreeTimeReserve().value.value,
+        reserveFull: item.getFullTimeReserve().value.value,
+      });
+    }
+
+    result.sort((a, b) => (a.startEarly > b.startEarly ? 1 : -1));
+
+    return result;
   }
 }

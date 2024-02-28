@@ -1,5 +1,5 @@
 import { Duration } from "../lib/duration";
-import { DeterministicWork } from "./deterministic-work";
+import { DeterministicWork } from "./work/deterministic-work";
 import { Task } from "./task";
 import { TaskEvent } from "./task-event";
 import { TypeEvent } from "./type-event.enum";
@@ -17,6 +17,7 @@ describe("Путь в сетевом графике", () => {
     Task.LAST_ID = 0;
     const task1 = new Task("Работа 1");
     const task2 = new Task("Работа 2");
+    const task3 = new Task("Работа 3");
 
     task1.setWork(DeterministicWork.Create(Duration.Create(12).value).value);
     task2.setWork(DeterministicWork.Create(Duration.Create(28).value).value);
@@ -41,5 +42,8 @@ describe("Путь в сетевом графике", () => {
     // Assert
     expect(length.getDurationOnMinutes()).toBe(40);
     expect(duration.equal(length)).toBeTruthy();
+    expect(sut.has(task1)).toBeTruthy()
+    expect(sut.has(task2)).toBeTruthy()
+    expect(sut.has(task3)).toBeFalsy()
   });
 });

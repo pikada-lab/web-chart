@@ -1,7 +1,6 @@
-import { DeterministicWorkDTO } from "./deterministic-work";
-import { NotSetWorkDTO } from "./not-set-work";
-import { ProbabilisticWorkDTO } from "./probabilistic-work";
+ 
 import { TaskType } from "./task-type.enum";
+import { WorkDTO } from "./work/index";
 
 export interface TaskDTO {
   id: number;
@@ -13,5 +12,5 @@ export interface TaskDTO {
   end: number | null;
   isConnected: boolean;
   // Временные характеристики
-  work: DeterministicWorkDTO | ProbabilisticWorkDTO | NotSetWorkDTO;
+  work: WorkDTO;
 }

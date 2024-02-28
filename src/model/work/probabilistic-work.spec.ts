@@ -1,6 +1,5 @@
-import { Duration } from "../lib/duration";
+import { Duration } from "../../lib/duration";
 import { ProbabilisticWork } from "./probabilistic-work";
-import { WorkType } from "./work.type";
 
 describe("Вероятностная работа", () => {
   it("Должна корректно создаваться", () => {
@@ -14,7 +13,7 @@ describe("Вероятностная работа", () => {
     expect(result.value.valueOf()).toBe(13);
     expect(result.value.getDuration().getDurationOnMinutes()).toBe(13);
     expect(result.value.toJSON()).toStrictEqual({
-      type: WorkType.PROBABILISTIC,
+      type: 2,
       min: "10m",
       max: "20m",
       real: "12m",

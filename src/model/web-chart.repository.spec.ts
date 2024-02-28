@@ -24,7 +24,7 @@ describe("Репозиторий сетевых графиков", () => {
     await repo.save(sut);
     const result = await repo.get(201);
 
-    expect(result.error).toBe('');
+    expect(result.error).toBe("");
     expect(result.value).toBeInstanceOf(WebChart);
     expect(result.value.getId()).toBe(201);
   });

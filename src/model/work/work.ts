@@ -1,4 +1,4 @@
-import { Duration } from "../lib/duration";
+import { Duration } from "../../lib/duration";
 
 export interface Work<T> {
   getDuration(): Duration;

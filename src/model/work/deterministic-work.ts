@@ -1,13 +1,10 @@
-import { Duration } from "../lib/duration";
-import { Result } from "../lib/result";
-import { ValueObject } from "../lib/value-object";
-import { Work } from "./work";
-import { WorkType } from "./work.type";
+import { Duration } from "../../lib/duration";
+import { Result } from "../../lib/result";
+import { ValueObject } from "../../lib/value-object";
 
-export interface DeterministicWorkDTO {
-  type: WorkType.DETERMINISTIC;
-  normal: string;
-}
+import { WorkType } from ".";
+import { DeterministicWorkDTO } from "./deterministic-work.dto";
+import { Work } from "./work";
 
 export class DeterministicWork
   extends ValueObject<Duration>

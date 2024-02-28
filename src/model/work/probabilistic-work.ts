@@ -1,15 +1,9 @@
+import { Result } from "../../lib/result";
+import { ValueObject } from "../../lib/value-object";
+import { Duration } from "../../lib/duration";
+import { WorkType } from ".";
+import { ProbabilisticWorkDTO } from "./probabilistic-work.dto";
 import { Work } from "./work";
-import { Result } from "../lib/result";
-import { ValueObject } from "../lib/value-object";
-import { Duration } from "../lib/duration";
-import { WorkType } from "./work.type";
-
-export interface ProbabilisticWorkDTO {
-  type: WorkType.PROBABILISTIC;
-  min: string;
-  max: string;
-  real: string;
-}
 
 export class ProbabilisticWork
   extends ValueObject<Duration>
@@ -67,7 +61,9 @@ export class ProbabilisticWork
     return Result.success(work);
   }
 
-  static Restore(dto: ProbabilisticWorkDTO): Result<Work<ProbabilisticWorkDTO>> {
+  static Restore(
+    dto: ProbabilisticWorkDTO
+  ): Result<Work<ProbabilisticWorkDTO>> {
     const min = Duration.Create(dto.min);
     if (min.isFailure) {
       return Result.reFailure(min);
