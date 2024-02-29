@@ -2,15 +2,14 @@ import { Line } from "../geometry/line.geo";
 import { Point } from "../geometry/point.geo";
 import { Task } from "../model/task";
 import { TaskEvent } from "../model/task-event";
-import { TaskType } from "../model/task-type.enum";
-import { Drawer } from "./drawer";
-import { Plan } from "./plan";
+import { CircleOptions, Drawer, LineOptions, TextOptions } from "./drawer";
+import { Plan } from "../graph/doc";
 
 export class CanvasDrawer implements Drawer {
   private status = "PENDING_CREATION";
   private ctx!: CanvasRenderingContext2D;
   private canvas: HTMLCanvasElement | null;
-  private select: number = -1;
+  private selected: TaskEvent[] = [];
   private radius: number = 0;
   constructor(id: string, options: { radius?: number } = {}) {
     this.radius = options.radius ?? 25;
@@ -23,49 +22,101 @@ export class CanvasDrawer implements Drawer {
     this.status = "READY";
   }
 
-  onhover = (id: number) => {};
-  onleave = (id: number) => {};
-
-  interaction(plan: Plan): void {
-    let leaveSelect = -1;
-    this.canvas?.addEventListener("mousemove", (e) => {
-      const point = new Point(e.offsetX, e.offsetY);
-      const intersect = this.intersect(point, plan);
-
-      console.log(intersect);
-
-      if (this.select !== intersect) {
-        if (this.select !== -1) {
-          leaveSelect = this.select;
-        }
-        this.select = intersect;
-        if (intersect !== -1) {
-          this.onhover(this.select);
-        }
-        if (leaveSelect !== -1) {
-          this.onleave(leaveSelect);
-          leaveSelect = -1;
-        }
-      }
-    });
+  circle(
+    center: Point,
+    radius: number,
+    options?: CircleOptions | undefined,
+  ): void {
+    this.ctx.beginPath();
+    this.ctx.strokeStyle = "#000";
+    this.ctx.lineWidth = 1;
+    this.ctx.arc(center.x, center.y, radius, 0, 2 * Math.PI, true);
+    this.ctx.stroke();
   }
 
-  intersect(point: Point, plan: Plan): number {
-    for (let [id, center] of plan.getCenters()) {
-      if (new Line(center, point).getLength() < this.radius) {
-        return id;
+  line(point1: Point, point2: Point, options?: LineOptions | undefined): void;
+  line(point1: Line, options?: LineOptions | undefined): void;
+  line(point1: unknown, point2?: unknown, options?: unknown): void {
+    if (typeof options === "object" && options) {
+      if ("dashed" in options && options.dashed) {
+        this.ctx.setLineDash([5, 5]);
       }
     }
-    return -1;
+    if (point1 instanceof Point) {
+      if (point2 instanceof Point) {
+        // line point -> point
+
+        this.ctx.beginPath();
+        this.ctx.lineJoin = "round";
+        this.ctx.strokeStyle = "#222";
+        this.ctx.lineWidth = 1;
+        this.ctx.lineCap = "round";
+        this.ctx.moveTo(point1.x, point1.Y);
+        this.ctx.lineTo(point2.X, point2.Y);
+        this.ctx.stroke();
+      }
+    } else if (point1 instanceof Line) {
+      // line like line
+      this.ctx.beginPath();
+      this.ctx.lineJoin = "round";
+      this.ctx.strokeStyle = "#222";
+      this.ctx.lineWidth = 1;
+      this.ctx.lineCap = "round";
+      this.ctx.moveTo(point1.p1.x, point1.p1.Y);
+      this.ctx.lineTo(point1.p2.X, point1.p2.Y);
+      this.ctx.stroke();
+    }
+
+    // Отменить отрисовку пунктиром
+    this.ctx.setLineDash([0]);
+
+    // если нужна стрелка, определить по опциям
+    // this.ctx.beginPath();
+    // this.ctx.lineJoin = "miter";
+    // this.ctx.setLineDash([0]);
+    // this.ctx.moveTo(line.p2.x, line.p2.Y);
+    // this.ctx.lineTo(left.x, left.Y);
+    // this.ctx.lineTo(arrowPoint2.x, arrowPoint2.Y);
+    // this.ctx.lineTo(right.x, right.Y);
+    // this.ctx.lineTo(line.p2.X, line.p2.Y);
+    // this.ctx.fill();
+  }
+
+  text(text: string, point: Point, angle: number, options: TextOptions): void {
+    this.drawCanvasText(point, angle, text, options);
+  }
+
+  rect(point1: Point, point2: Point, options: TextOptions): void {
+    throw new Error("Method not implemented.");
+  }
+  setCursor(cursor: "default" | "pointer" | "move"): void {
+    this.canvas!.style.cursor = cursor;
   }
 
   private isReady(): boolean {
     return this.status === "READY";
   }
 
-  clear(): void {
+  public clear(): void {
     this.canvas!.style.cursor = "default";
     this.ctx.clearRect(0, 0, 1920, 1080);
+  }
+
+  select(events: TaskEvent[]): void {
+    this.selected = events;
+  }
+
+  unselect(): void {
+    this.selected = [];
+  }
+
+  intersect(point: Point, plan: Plan): TaskEvent | null {
+    for (let [id, center] of plan.getCenters()) {
+      if (new Line(center, point).getLength() < this.radius) {
+        return plan.getEvent(id);
+      }
+    }
+    return null;
   }
 
   drawTask(plan: Plan, t: Task): void {
@@ -90,7 +141,7 @@ export class CanvasDrawer implements Drawer {
     }
 
     this.drawCanvasEvent(plan.getCoordinates(e.getId()), e.getId().toString());
-    if (e.getId() === this.select) {
+    if (this.selected.includes(e)) {
       this.canvas!.style.cursor = "pointer";
       this.drawCanvasSelect(plan.getCoordinates(e.getId()));
     }
@@ -118,7 +169,6 @@ export class CanvasDrawer implements Drawer {
   }
 
   private drawCanvasSelect(point: Point): void {
-
     this.ctx.setLineDash([2, 3]);
     this.ctx.beginPath();
     this.ctx.strokeStyle = "#000";
@@ -172,7 +222,6 @@ export class CanvasDrawer implements Drawer {
     this.ctx.strokeStyle = "#222";
     this.ctx.lineWidth = 1;
     this.ctx.lineCap = "round";
-
     this.ctx.moveTo(line.p1.x, line.p1.Y);
     this.ctx.lineTo(line.p2.X, line.p2.Y);
     this.ctx.stroke();

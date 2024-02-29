@@ -3,9 +3,9 @@ import { Result } from "../lib/result";
 import { Task } from "../model/task";
 import { TaskEvent } from "../model/task-event";
 import { WebChart } from "../model/web-chart";
-import { PlanDTO } from "./plan.dto";
+import { DocDTO } from "./doc.dto";
 
-export class Plan {
+export class Doc {
   private id: number = 0;
   private events = new Map<number, Point>();
   constructor(private readonly web: WebChart) {
@@ -67,15 +67,19 @@ export class Plan {
     return this.web.getTask();
   }
 
+  public getEvent(id: number): TaskEvent | null {
+    return this.web.getEvents().find(e => e.getId() === id) ?? null;
+  }
+
   public getCoordinates(id: number): Point {
     return this.events.get(id) ?? Point.from([100, 100]);
   }
 
-  public static Restore(dto: PlanDTO, web: WebChart): Result<Plan> {
+  public static Restore(dto: DocDTO, web: WebChart): Result<Doc> {
     if (dto.webChartId !== web.getId()) {
       return Result.failure("Документ не снабжён моделью графика");
     }
-    const plan = new Plan(web);
+    const plan = new Doc(web);
     plan.id = dto.id;
     for (let e of dto.events) {
       const id = e[0];
@@ -84,7 +88,7 @@ export class Plan {
     return Result.success(plan);
   }
 
-  toJSON(): PlanDTO {
+  toJSON(): DocDTO {
     return {
       id: this.id,
       webChartId: this.web.getId(),
