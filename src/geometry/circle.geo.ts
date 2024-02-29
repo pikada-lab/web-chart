@@ -1,7 +1,10 @@
-import { Point } from './point.geo';
+import { Point } from "./point.geo";
 
 export class Circle {
-  constructor(public p1: Point, public r: number) {}
+  constructor(
+    public p1: Point,
+    public r: number,
+  ) {}
 
   static createByThreePoint(p1: Point, p2: Point, p3: Point): Circle {
     const A = p2.x - p1.x;
@@ -12,7 +15,7 @@ export class Circle {
     const F = C * (p1.x + p3.x) + D * (p1.y + p3.y);
     const G = 2 * (A * (p3.y - p2.y) - B * (p3.x - p2.x));
     if (G === 0) {
-      throw new Error('Построение - Все точки на одной линии');
+      throw new Error("Построение - Все точки на одной линии");
     }
     // координаты центра
     const Cx = (D * E - B * F) / G;

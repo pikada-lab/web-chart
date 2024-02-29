@@ -50,7 +50,7 @@ export class TaskEvent {
   getReserveTime(): Result<Duration> {
     if (this.earlyDeadline === null || this.lateDeadline === null) {
       return Result.failure(
-        "Резерв времени можно вычислить только после определения времени свершения каждого события"
+        "Резерв времени можно вычислить только после определения времени свершения каждого события",
       );
     }
     return Result.success(this.lateDeadline!.minus(this.earlyDeadline!));

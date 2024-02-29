@@ -160,7 +160,7 @@ export const dto = {
   id: 101,
   tasks: [
     {
-     work: { type: 1, normal: "3m" },
+      work: { type: 1, normal: "3m" },
       end: 2,
       id: 1,
       isConnected: true,
@@ -169,7 +169,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "2m" },
+      work: { type: 1, normal: "2m" },
       end: 3,
       id: 2,
       isConnected: true,
@@ -178,7 +178,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "3m" },
+      work: { type: 1, normal: "3m" },
       end: 5,
       id: 3,
       isConnected: true,
@@ -187,7 +187,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "4m" },
+      work: { type: 1, normal: "4m" },
       end: 4,
       id: 4,
       isConnected: true,
@@ -196,7 +196,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "2m" },
+      work: { type: 1, normal: "2m" },
       end: 7,
       id: 5,
       isConnected: true,
@@ -205,7 +205,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "2m" },
+      work: { type: 1, normal: "2m" },
       end: 8,
       id: 6,
       isConnected: true,
@@ -214,7 +214,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "3m" },
+      work: { type: 1, normal: "3m" },
       end: 9,
       id: 7,
       isConnected: true,
@@ -223,7 +223,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "5m" },
+      work: { type: 1, normal: "5m" },
       end: 10,
       id: 8,
       isConnected: true,
@@ -232,7 +232,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "4m" },
+      work: { type: 1, normal: "4m" },
       end: 6,
       id: 9,
       isConnected: true,
@@ -241,7 +241,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "12m" },
+      work: { type: 1, normal: "12m" },
       end: 11,
       id: 10,
       isConnected: true,
@@ -250,7 +250,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "2m" },
+      work: { type: 1, normal: "2m" },
       end: 12,
       id: 11,
       isConnected: true,
@@ -259,7 +259,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "4m" },
+      work: { type: 1, normal: "4m" },
       end: 15,
       id: 12,
       isConnected: true,
@@ -268,7 +268,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "4m" },
+      work: { type: 1, normal: "4m" },
       end: 13,
       id: 13,
       isConnected: true,
@@ -277,7 +277,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "12m" },
+      work: { type: 1, normal: "12m" },
       end: 14,
       id: 14,
       isConnected: true,
@@ -286,7 +286,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "6m" },
+      work: { type: 1, normal: "6m" },
       end: 16,
       id: 15,
       isConnected: true,
@@ -295,7 +295,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "16m" },
+      work: { type: 1, normal: "16m" },
       end: 18,
       id: 16,
       isConnected: true,
@@ -304,7 +304,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "2m" },
+      work: { type: 1, normal: "2m" },
       end: 12,
       id: 17,
       isConnected: true,
@@ -313,7 +313,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "3m" },
+      work: { type: 1, normal: "3m" },
       end: 17,
       id: 18,
       isConnected: true,
@@ -322,7 +322,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "14m" },
+      work: { type: 1, normal: "14m" },
       end: 21,
       id: 19,
       isConnected: true,
@@ -331,7 +331,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "3m" },
+      work: { type: 1, normal: "3m" },
       end: 17,
       id: 20,
       isConnected: true,
@@ -340,7 +340,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "2m" },
+      work: { type: 1, normal: "2m" },
       end: 22,
       id: 21,
       isConnected: true,
@@ -349,7 +349,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "12m" },
+      work: { type: 1, normal: "12m" },
       end: 23,
       id: 22,
       isConnected: true,
@@ -358,7 +358,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "2m" },
+      work: { type: 1, normal: "2m" },
       end: 25,
       id: 23,
       isConnected: true,
@@ -367,7 +367,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "1m" },
+      work: { type: 1, normal: "1m" },
       end: 26,
       id: 24,
       isConnected: true,
@@ -376,7 +376,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "12m" },
+      work: { type: 1, normal: "12m" },
       end: 23,
       id: 25,
       isConnected: true,
@@ -385,7 +385,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "12m" },
+      work: { type: 1, normal: "12m" },
       end: 20,
       id: 26,
       isConnected: true,
@@ -394,7 +394,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "2m" },
+      work: { type: 1, normal: "2m" },
       end: 22,
       id: 27,
       isConnected: true,
@@ -403,7 +403,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "4m" },
+      work: { type: 1, normal: "4m" },
       end: 19,
       id: 28,
       isConnected: true,
@@ -412,7 +412,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "6m" },
+      work: { type: 1, normal: "6m" },
       end: 24,
       id: 29,
       isConnected: true,
@@ -421,7 +421,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "2m" },
+      work: { type: 1, normal: "2m" },
       end: 26,
       id: 30,
       isConnected: true,
@@ -430,7 +430,7 @@ export const dto = {
       type: 1,
     },
     {
-     work: { type: 1, normal: "2m" },
+      work: { type: 1, normal: "2m" },
       end: 25,
       id: 31,
       isConnected: true,

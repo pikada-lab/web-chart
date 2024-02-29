@@ -1,6 +1,5 @@
-import { Coordinate, PointObject } from './model';
-import { Primitive } from './primitive.geo';
- 
+import { Coordinate, PointObject } from "./model";
+import { Primitive } from "./primitive.geo";
 
 export class Point extends Primitive {
   static degreePerMetr = 180 / (Math.PI * 6371000);
@@ -19,7 +18,9 @@ export class Point extends Primitive {
     return new Point(Infinity, Infinity);
   }
 
-  static from(coor: Point | Coordinate | PointObject | number[] | undefined): Point {
+  static from(
+    coor: Point | Coordinate | PointObject | number[] | undefined,
+  ): Point {
     if (!coor) {
       return Point.empty();
     }
@@ -39,8 +40,8 @@ export class Point extends Primitive {
     return (
       Array.isArray(coor) &&
       coor.length >= 2 &&
-      typeof coor[0] === 'number' &&
-      typeof coor[1] === 'number'
+      typeof coor[0] === "number" &&
+      typeof coor[1] === "number"
     );
   }
 
@@ -48,8 +49,8 @@ export class Point extends Primitive {
     return (
       Array.isArray(coor) &&
       coor.length >= 2 &&
-      typeof coor[0] === 'number' &&
-      typeof coor[1] === 'number'
+      typeof coor[0] === "number" &&
+      typeof coor[1] === "number"
     );
   }
 
@@ -113,10 +114,12 @@ export class Point extends Primitive {
    */
   nearest(points: Point[]): Point {
     if (!Array.isArray(points)) {
-      throw new Error('Point.nearest на вход должна получать массив точек');
+      throw new Error("Point.nearest на вход должна получать массив точек");
     }
     if (points.length === 0) {
-      throw new Error('Point.nearest на вход должна получать массив больше 0 значения');
+      throw new Error(
+        "Point.nearest на вход должна получать массив больше 0 значения",
+      );
     }
     if (points.length === 1) {
       return points[0];
@@ -146,7 +149,6 @@ export class Point extends Primitive {
     this.y = p.y;
     return this;
   }
- 
 
   offsetMetrX(X: number): this {
     const R = 6371; // km
@@ -168,7 +170,7 @@ export class Point extends Primitive {
 
   toRad(n: number): number {
     return (n * Math.PI) / 180;
-  } 
+  }
 
   length(point: Point): number {
     return Math.sqrt((this.x - point.x) ** 2 + (this.y - point.y) ** 2);
@@ -177,7 +179,6 @@ export class Point extends Primitive {
   toString(): string {
     return `${Math.round(this.x)}x${Math.round(this.y)}`;
   }
- 
 
   /**
    * Этот запрос влияет на сборку дерева флагов
@@ -185,7 +186,7 @@ export class Point extends Primitive {
   toKey(): string {
     return `${this.x}x${this.y}`;
   }
- 
+
   clone(): Point {
     return new Point(this.X, this.Y);
   }

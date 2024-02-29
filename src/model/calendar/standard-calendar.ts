@@ -7,7 +7,7 @@ export class StandardCalendar implements Calendar {
     private readonly start: [number, number] = [9, 30],
     private readonly end: [number, number] = [18, 0],
     private readonly startRest: [number, number] = [13, 30],
-    private readonly endRest: [number, number] = [14, 0]
+    private readonly endRest: [number, number] = [14, 0],
   ) {}
 
   forward(start: Date | number | string, duration: Duration): Date {

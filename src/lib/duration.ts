@@ -23,7 +23,7 @@ export class Duration extends ValueObject<string> {
     const part = value.split(/\s+/) as string[];
     if (!part.every((m) => /(\d+(\.\d+)?[mwhd])/.test(m))) {
       return Result.failure(
-        "Неверный формат времени, поддерживается m, h, w, d"
+        "Неверный формат времени, поддерживается m, h, w, d",
       );
     }
 
@@ -40,7 +40,7 @@ export class Duration extends ValueObject<string> {
 
     if ([...index.values()].some((l) => l > 1)) {
       return Result.failure(
-        "Каждый тип временных едениц можно использовать один раз"
+        "Каждый тип временных едениц можно использовать один раз",
       );
     }
     const minutes = this.parse(value);
@@ -110,13 +110,13 @@ export class Duration extends ValueObject<string> {
 
   sum(that: Duration): Duration {
     return Duration.Create(
-      this.getDurationOnMinutes() + that.getDurationOnMinutes()
+      this.getDurationOnMinutes() + that.getDurationOnMinutes(),
     ).value;
   }
 
   minus(that: Duration): Duration {
     return Duration.Create(
-      this.getDurationOnMinutes() - that.getDurationOnMinutes()
+      this.getDurationOnMinutes() - that.getDurationOnMinutes(),
     ).value;
   }
 

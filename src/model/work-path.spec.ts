@@ -42,8 +42,8 @@ describe("Путь в сетевом графике", () => {
     // Assert
     expect(length.getDurationOnMinutes()).toBe(40);
     expect(duration.equal(length)).toBeTruthy();
-    expect(sut.has(task1)).toBeTruthy()
-    expect(sut.has(task2)).toBeTruthy()
-    expect(sut.has(task3)).toBeFalsy()
+    expect(sut.has(task1)).toBeTruthy();
+    expect(sut.has(task2)).toBeTruthy();
+    expect(sut.has(task3)).toBeFalsy();
   });
 });

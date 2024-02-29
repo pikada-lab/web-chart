@@ -47,7 +47,7 @@ export class Task {
 
   constructor(
     public readonly name: string,
-    public readonly type: TaskType = TaskType.HARD
+    public readonly type: TaskType = TaskType.HARD,
   ) {
     this.id = ++Task.LAST_ID;
   }
@@ -65,6 +65,9 @@ export class Task {
     return `--- ${this.getDuration().value} -->`;
   }
 
+  isFiction(): boolean {
+    return this.type === TaskType.FICTION;
+  }
   /**
    * Конечная продолжительность
    */
@@ -127,7 +130,7 @@ export class Task {
     return Result.success(
       this.end!.getLateDeadline()!
         .minus(this.start!.getEarlyDeadline()!)
-        .minus(this.work.getDuration()!)
+        .minus(this.work.getDuration()!),
     );
   }
 
@@ -148,7 +151,7 @@ export class Task {
     return Result.success(
       this.end!.getEarlyDeadline()!
         .minus(this.start!.getEarlyDeadline()!)
-        .minus(this.work.getDuration()!)
+        .minus(this.work.getDuration()!),
     );
   }
 

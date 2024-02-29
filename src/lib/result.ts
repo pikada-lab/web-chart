@@ -15,7 +15,7 @@ export class Result<T> {
   get value(): T {
     if (this.isFailure) {
       throw new Error(
-        "Обращение к заведомо некорректному значению; " + this.error
+        "Обращение к заведомо некорректному значению; " + this.error,
       );
     }
     return this.result;
@@ -40,12 +40,12 @@ export class Result<T> {
       return result;
     }
     throw new Error(
-      "Неправильное использование функции, функция может оборачивать только неудачный результат"
+      "Неправильное использование функции, функция может оборачивать только неудачный результат",
     );
   }
 
   private static isResultNoType<T>(
-    result: Result<unknown>
+    result: Result<unknown>,
   ): result is Result<T> {
     if (!result.isFailure) {
       return false;
@@ -59,7 +59,7 @@ export class Result<T> {
     }
     if (typeof fn !== "function") {
       return Result.failure(
-        "Ошибка аргумента Result::map(fn) - fn должна быть функцией"
+        "Ошибка аргумента Result::map(fn) - fn должна быть функцией",
       );
     }
 

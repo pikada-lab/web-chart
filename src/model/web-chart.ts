@@ -15,7 +15,7 @@ export class WebChart {
 
   constructor(
     private readonly id: number,
-    private readonly title: string
+    private readonly title: string,
   ) {}
 
   getId(): number {
@@ -47,6 +47,14 @@ export class WebChart {
     return this.maxLengthPath;
   }
 
+  getEvents(): TaskEvent[] {
+    return [...this.events];
+  }
+
+  getTask(): Task[] {
+    return [...this.tasks];
+  }
+
   private creatreWorkPath(): WorkPath {
     return new WorkPath();
   }
@@ -54,8 +62,8 @@ export class WebChart {
   private updatePathes(): void {
     const pathesResult = this.check().map(() =>
       this.createPathes(this.creatreWorkPath(), this.start!).map((l, i) =>
-        l.setName(i + 1)
-      )
+        l.setName(i + 1),
+      ),
     );
     this.pathes.length = 0;
     if (pathesResult.isFailure) {
@@ -143,7 +151,7 @@ export class WebChart {
       return;
     }
     this.maxLengthPath = [...this.pathes].sort((a, b) =>
-      a.length().lt(b.length()) ? 1 : -1
+      a.length().lt(b.length()) ? 1 : -1,
     )[0];
   }
 
@@ -246,7 +254,7 @@ export class WebChart {
 
   getListOfWork(
     dateStart: Date,
-    calendar: Calendar
+    calendar: Calendar,
   ): {
     num: string;
     work: string;
@@ -260,19 +268,19 @@ export class WebChart {
     for (let item of this.tasks) {
       const startEarly = calendar.forward(
         dateStart,
-        item.prev()!.getEarlyDeadline()!
+        item.prev()!.getEarlyDeadline()!,
       );
       const startLate = calendar.forward(
         dateStart,
-        item.prev()!.getLateDeadline()!
+        item.prev()!.getLateDeadline()!,
       );
       const endEarly = calendar.forward(
         dateStart,
-        item.next()!.getEarlyDeadline()!
+        item.next()!.getEarlyDeadline()!,
       );
       const endLate = calendar.forward(
         dateStart,
-        item.next()!.getLateDeadline()!
+        item.next()!.getLateDeadline()!,
       );
       result.push({
         num: item.key,

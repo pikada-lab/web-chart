@@ -24,8 +24,8 @@ describe("Модель работы в сетевом графике", () => {
       ProbabilisticWork.Create(
         Duration.Create("5m").value,
         Duration.Create("6m").value,
-        Duration.Create("16m").value
-      ).value
+        Duration.Create("16m").value,
+      ).value,
     );
 
     expect(sut.hasDuration).toBeTruthy();

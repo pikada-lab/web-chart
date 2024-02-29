@@ -18,7 +18,7 @@ export class DeterministicWork
   static Create(duration: Duration): Result<Work<DeterministicWorkDTO>> {
     if (duration.isEmpty()) {
       return Result.failure(
-        "Детерменированная работа не может быть равна нулю"
+        "Детерменированная работа не может быть равна нулю",
       );
     }
     const work = new DeterministicWork(duration);
@@ -26,7 +26,7 @@ export class DeterministicWork
   }
 
   static Restore(
-    dto: DeterministicWorkDTO
+    dto: DeterministicWorkDTO,
   ): Result<Work<DeterministicWorkDTO>> {
     const normal = Duration.Create(dto.normal);
     if (normal.isFailure) {

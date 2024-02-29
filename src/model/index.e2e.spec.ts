@@ -206,11 +206,11 @@ describe("Полная проверка модели сетевого графи
     expect(T5.next()!.getEarlyDeadline()!.getDurationOnMinutes()).toBe(6);
     expect(T5.prev()!.getEarlyDeadline()!.getDurationOnMinutes()).toBe(4);
     expect(T5.getFreeTimeReserve().value!.getDurationOnMinutes()).toBe(
-      6 - 4 - 2
+      6 - 4 - 2,
     );
 
     expect(T6.getFreeTimeReserve().value!.getDurationOnMinutes()).toBe(
-      6 - 4 - 2
+      6 - 4 - 2,
     );
     expect(T6.getFullTimeReserve().value!.getDurationOnMinutes()).toBe(21);
     expect(E4.getReserveTime().value!.getDurationOnMinutes()).toBe(0);
@@ -233,7 +233,7 @@ describe("Полная проверка модели сетевого графи
     expect(sut.toJSON()).toStrictEqual(wdto);
 
     console.table(
-      sut.getListOfWork(new Date("2024-01-01"), new StandardCalendar())
+      sut.getListOfWork(new Date("2024-01-01"), new StandardCalendar()),
     );
   });
 });

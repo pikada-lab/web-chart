@@ -1,10 +1,9 @@
 import { Duration } from "../../lib/duration";
 import { Result } from "../../lib/result";
-import { ValueObject } from "../../lib/value-object"; 
+import { ValueObject } from "../../lib/value-object";
 import { WorkType } from ".";
 import { NotSetWorkDTO } from "./not-set-work.dto";
 import { Work } from "./work";
- 
 
 export class NotSetWork
   extends ValueObject<Duration>

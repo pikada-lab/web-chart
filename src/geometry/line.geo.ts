@@ -1,6 +1,6 @@
-import { Coordinate } from './model';
-import { Point } from './point.geo';
-import { Primitive } from './primitive.geo';
+import { Coordinate } from "./model";
+import { Point } from "./point.geo";
+import { Primitive } from "./primitive.geo";
 
 export class Line extends Primitive {
   public p1: Point;
@@ -15,16 +15,20 @@ export class Line extends Primitive {
   static from(coord: Line | Coordinate[]): Line;
   static from(coord: Point, azimuth: Point): Line;
   static from(center: Point, azimuth: number, length: number): Line;
-  static from(coord: Coordinate[] | Point | Line, azimuth?: number | Point, length?: number): Line {
+  static from(
+    coord: Coordinate[] | Point | Line,
+    azimuth?: number | Point,
+    length?: number,
+  ): Line {
     if (coord instanceof Point && azimuth instanceof Point) {
       return new Line(coord, azimuth);
     }
     if (coord instanceof Point) {
-      if (typeof azimuth === 'number' && typeof length === 'number') {
+      if (typeof azimuth === "number" && typeof length === "number") {
         return Line.fromAzimuth(coord, azimuth, length);
       }
       throw new Error(
-        'Невозможно создать линию через азимут. Необходим азимут и длина с числовым типом.',
+        "Невозможно создать линию через азимут. Необходим азимут и длина с числовым типом.",
       );
     }
     if (coord instanceof Line) {
@@ -45,7 +49,7 @@ export class Line extends Primitive {
     p2.x += length * Math.sin(azimuth * rad);
     p2.y += length * Math.cos(azimuth * rad);
     return new Line(center, p2);
-  } 
+  }
 
   public copy(): Line {
     return Line.from(this.p1, this.p2);
@@ -62,13 +66,13 @@ export class Line extends Primitive {
    * Возвращает азимут отрезка в проекции экрана
    */
   getAzimuth(): number {
-    try { 
+    try {
       const dx = this.p2.X - this.p1.X;
       const dy = this.p2.Y - this.p1.Y;
       let p = Math.abs(dx) / dx;
       if (Number.isNaN(p)) {
         p = 1;
-      } 
+      }
       return (180 * p * Math.acos(dy / Math.sqrt(dx ** 2 + dy ** 2))) / Math.PI;
     } catch (ex) {
       console.warn(ex);
@@ -150,19 +154,19 @@ export class Line extends Primitive {
     const lat2 = p2.latitude;
     const lon2 = p2.longitude;
     const R = 6371; // km
-    const dLat = this.toRad(lat2 - lat1);
-    const dLon = this.toRad(lon2 - lon1);
+    const dLat = Line.ToRad(lat2 - lat1);
+    const dLon = Line.ToRad(lon2 - lon1);
     const a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(this.toRad(lat1)) *
-        Math.cos(this.toRad(lat2)) *
+      Math.cos(Line.ToRad(lat1)) *
+        Math.cos(Line.ToRad(lat2)) *
         Math.sin(dLon / 2) *
         Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return R * c;
   }
 
-  toRad(n: number): number {
+  static ToRad(n: number): number {
     return (n * Math.PI) / 180;
   }
 
@@ -185,11 +189,13 @@ export class Line extends Primitive {
     const y = A.Y - (d2 * (A.Y - B.Y)) / d1;
     return new Point(x, y);
   }
-    
+
   getLength(): number {
-    return Math.sqrt((this.p1.x - this.p2.x) ** 2 + (this.p1.y - this.p2.y) ** 2);
+    return Math.sqrt(
+      (this.p1.x - this.p2.x) ** 2 + (this.p1.y - this.p2.y) ** 2,
+    );
   }
- 
+
   getCenterPoint(): Point {
     return this.getPointByProection(0.5);
   }
@@ -222,7 +228,7 @@ export class Line extends Primitive {
 
   toCoordinate(): Coordinate[] {
     return [this.p1.toCoordinate(), this.p2.toCoordinate()];
-  } 
+  }
 
   clone(): Line {
     return new Line(this.p1.clone(), this.p2.clone());

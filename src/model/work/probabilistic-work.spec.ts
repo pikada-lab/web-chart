@@ -6,7 +6,7 @@ describe("Вероятностная работа", () => {
     const result = ProbabilisticWork.Create(
       Duration.Create("10m").value,
       Duration.Create("12m").value,
-      Duration.Create("20m").value
+      Duration.Create("20m").value,
     );
     expect(result.error).toBe("");
     expect(result.value).toBeInstanceOf(ProbabilisticWork);
@@ -23,7 +23,7 @@ describe("Вероятностная работа", () => {
     const result = ProbabilisticWork.Create(
       Duration.Create("20m").value,
       Duration.Create("12m").value,
-      Duration.Create("10m").value
+      Duration.Create("10m").value,
     );
     expect(result.error).not.toBe("");
   });
@@ -31,7 +31,7 @@ describe("Вероятностная работа", () => {
     const result = ProbabilisticWork.Create(
       Duration.Create("10m").value,
       Duration.Create("5m").value,
-      Duration.Create("20m").value
+      Duration.Create("20m").value,
     );
     expect(result.error).not.toBe("");
   });
@@ -39,7 +39,7 @@ describe("Вероятностная работа", () => {
     const result = ProbabilisticWork.Create(
       Duration.Create("10m").value,
       Duration.Create("25m").value,
-      Duration.Create("20m").value
+      Duration.Create("20m").value,
     );
     expect(result.error).not.toBe("");
   });

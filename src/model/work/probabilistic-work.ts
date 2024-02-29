@@ -23,16 +23,16 @@ export class ProbabilisticWork
   static Create(
     min: Duration,
     real: Duration,
-    max: Duration
+    max: Duration,
   ): Result<Work<ProbabilisticWorkDTO>> {
     if (min.isEmpty()) {
       return Result.failure(
-        "Минимальное время работы не может быть равна нулю"
+        "Минимальное время работы не может быть равна нулю",
       );
     }
     if (real.isEmpty()) {
       return Result.failure(
-        "Наиболее вероятное время выполнения работ не может быть равна нулю"
+        "Наиболее вероятное время выполнения работ не может быть равна нулю",
       );
     }
     if (max.isEmpty()) {
@@ -40,17 +40,17 @@ export class ProbabilisticWork
     }
     if (min.gt(max)) {
       return Result.failure(
-        "Минимальное время работы не может быть больше максимального"
+        "Минимальное время работы не может быть больше максимального",
       );
     }
     if (min.gt(real)) {
       return Result.failure(
-        "Минимальное время работы не может быть больше наиболее вероятного"
+        "Минимальное время работы не может быть больше наиболее вероятного",
       );
     }
     if (real.gt(max)) {
       return Result.failure(
-        "Наиболее вероятного не может быть больше максимального времени"
+        "Наиболее вероятного не может быть больше максимального времени",
       );
     }
     const duration = min.sum(max).sum(real.times(4)).division(6).value;
@@ -62,7 +62,7 @@ export class ProbabilisticWork
   }
 
   static Restore(
-    dto: ProbabilisticWorkDTO
+    dto: ProbabilisticWorkDTO,
   ): Result<Work<ProbabilisticWorkDTO>> {
     const min = Duration.Create(dto.min);
     if (min.isFailure) {

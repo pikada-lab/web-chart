@@ -76,10 +76,12 @@ describe("Продолжительность во времени", () => {
     expect(sut.value).toBe("3w");
   });
   it("Должен корректно пересчитывать временные характеристики", () => {
-    const duration = Duration.Create(60 * 8 * 5 + 2 * 60 * 8 + 3 * 60 + 4).value;
+    const duration = Duration.Create(
+      60 * 8 * 5 + 2 * 60 * 8 + 3 * 60 + 4,
+    ).value;
 
-    expect(duration.value).toBe('1w 2d 3h 4m');
-  })
+    expect(duration.value).toBe("1w 2d 3h 4m");
+  });
   it("Должен создавать только корректные значения", () => {
     // Arrange
     const value = "T_T";
@@ -221,8 +223,7 @@ describe("Продолжительность во времени", () => {
     expect(sut.value).toBeInstanceOf(Duration);
     expect(sut.value.getWeeks()).toBe(1);
   });
-  
-  
+
   it("Должен корректно возвращать дни 0d", () => {
     // Arrange
     const value = "1w 6h 12m";
