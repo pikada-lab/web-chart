@@ -1,3 +1,4 @@
+import { Line } from "./line.geo";
 import { Point } from "./point.geo";
 
 export class Circle {
@@ -5,6 +6,10 @@ export class Circle {
     public p1: Point,
     public r: number,
   ) {}
+
+  hasPoint(point: Point): boolean {
+    return new Line(point, this.p1).getLength() <= this.r;
+  }
 
   static createByThreePoint(p1: Point, p2: Point, p3: Point): Circle {
     const A = p2.x - p1.x;

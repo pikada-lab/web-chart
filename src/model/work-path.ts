@@ -20,6 +20,18 @@ export class WorkPath {
     this.duration = duration;
   }
 
+  getElements(): (TaskEvent | Task)[] {
+    return this.path;
+  }
+
+  getEvents(): TaskEvent[] {
+    return this.path.filter((r) => (r instanceof TaskEvent)) as TaskEvent[];
+  }
+
+  getTasks(): Task[] {
+    return this.path.filter((r) => (r instanceof Task)) as Task[];
+  }
+
   toString(): string {
     return (
       this.getName() +

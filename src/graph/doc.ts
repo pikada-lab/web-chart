@@ -1,3 +1,6 @@
+import { EventShape } from "../drawer/shapes/event.shape";
+import { Shape } from "../drawer/shapes/shape";
+import { TaskShape } from "../drawer/shapes/task.shape";
 import { Point } from "../geometry/point.geo";
 import { Result } from "../lib/result";
 import { Task } from "../model/task";
@@ -7,26 +10,40 @@ import { DocDTO } from "./doc.dto";
 
 export class Doc {
   private id: number = 0;
-  private events = new Map<number, Point>();
+  private events = new Map<number, EventShape>();
+  private shapes: Shape[] = [];
   constructor(private readonly web: WebChart) {
     let i = 0;
     let j = 0;
     for (let e of this.web.getEvents()) {
-      this.events.set(e.getId(), new Point(100 + i * 80, 100 + j * 80));
+      const shape = new EventShape(e, new Point(100 + i * 80, 100 + j * 80));
+      this.events.set(e.getId(), shape);
+      this.shapes.push(shape);
       i++;
       if (i > 10) {
         i = 0;
         j++;
       }
     }
-  }
 
+    for (let t of this.web.getTask()) {
+      const start = this.events.get(t.prev()!.getId());
+      const end = this.events.get(t.next()!.getId());
+      if (start && end) {
+        this.shapes.push(new TaskShape(t, start, end));
+      }
+    }
+  }
+  /*
   auto(): void {
     if (!this.web.check()) {
       return;
     }
     const start = this.web.getStart();
-    this.events.set(start!.getId(), new Point(100, 400));
+    this.events.set(
+      start!.getId(),
+      new EventShape(start!, new Point(100, 400)),
+    );
     this.autoDefault(
       start!.nextItems()!.map((r) => r.next()!),
       400,
@@ -41,11 +58,17 @@ export class Doc {
     let i = 0;
     for (let e of events) {
       if (e.isEnd()) {
-        this.events.set(e!.getId(), new Point(gap + step * 100, 400));
+        this.events.set(
+          e!.getId(),
+          new EventShape(e!, new Point(gap + step * 100, 400)),
+        );
         continue;
       }
       const ownLine = line + startY + gap * i;
-      this.events.set(e!.getId(), new Point(gap + step * 100, ownLine));
+      this.events.set(
+        e!.getId(),
+        new EventShape(e!, new Point(gap + step * 100, ownLine)),
+      );
       i++;
       this.autoDefault(
         e!.nextItems()!.map((r) => r.next()!),
@@ -54,25 +77,22 @@ export class Doc {
       );
     }
   }
+*/
 
   public getEvents(): TaskEvent[] {
     return this.web.getEvents();
-  }
-
-  public getCenters(): [number, Point][] {
-    return [...this.events.entries()];
   }
 
   public getTasks(): Task[] {
     return this.web.getTask();
   }
 
-  public getEvent(id: number): TaskEvent | null {
-    return this.web.getEvents().find(e => e.getId() === id) ?? null;
+  getShapes(): Shape[] {
+    return this.shapes;
   }
 
-  public getCoordinates(id: number): Point {
-    return this.events.get(id) ?? Point.from([100, 100]);
+  public getEvent(id: number): TaskEvent | null {
+    return this.web.getEvents().find((e) => e.getId() === id) ?? null;
   }
 
   public static Restore(dto: DocDTO, web: WebChart): Result<Doc> {
@@ -83,7 +103,7 @@ export class Doc {
     plan.id = dto.id;
     for (let e of dto.events) {
       const id = e[0];
-      plan.events.get(id)?.setCoordinate(Point.from([e[1], e[2]]));
+      plan.events.get(id)?.move(Point.from([e[1], e[2]]));
     }
     return Result.success(plan);
   }
@@ -92,7 +112,11 @@ export class Doc {
     return {
       id: this.id,
       webChartId: this.web.getId(),
-      events: [...this.events.entries()].map((r) => [r[0], r[1].X, r[1].Y]),
+      events: [...this.events.entries()].map((r) => [
+        r[0],
+        r[1].getPosition().X,
+        r[1].getPosition().Y,
+      ]),
     };
   }
 }

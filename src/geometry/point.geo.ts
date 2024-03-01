@@ -15,7 +15,7 @@ export class Point extends Primitive {
   }
 
   static empty(): Point {
-    return new Point(Infinity, Infinity);
+    return new Point(0, 0);
   }
 
   static from(
@@ -68,6 +68,10 @@ export class Point extends Primitive {
     this.y = y;
   }
 
+  offset(offset: Point) {
+    return new Point(this.X + offset.X, this.Y + offset.Y);
+  }
+
   isEmpty(): boolean {
     return !(this.X || this.Y);
   }
@@ -78,23 +82,7 @@ export class Point extends Primitive {
 
   toObject(): PointObject {
     return { longitude: this.x, latitude: this.y };
-  }
-
-  normalize(): this {
-    while (this.x < -360) {
-      this.x += 360;
-    }
-    while (this.x > 360) {
-      this.x -= 360;
-    }
-    while (this.y < -360) {
-      this.y += 360;
-    }
-    while (this.y > 360) {
-      this.y -= 360;
-    }
-    return this;
-  }
+  } 
 
   get X(): number {
     return this.x;
@@ -134,42 +122,18 @@ export class Point extends Primitive {
       }, null as any).point;
   }
 
-  offsetX(X: number): this {
-    this.x += X;
-    return this;
+  offsetX(X: number): Point {
+    return new Point(this.X + X, this.Y);
   }
 
-  offsetY(Y: number): this {
-    this.y += Y;
-    return this;
+  offsetY(Y: number): Point {
+    return new Point(this.X, this.Y + Y);
   }
 
-  setCoordinate(p: Point): this {
+  setCoordinate(p: Point): Point {
     this.x = p.x;
     this.y = p.y;
     return this;
-  }
-
-  offsetMetrX(X: number): this {
-    const R = 6371; // km
-    const lat = this.toRad(this.y);
-    const Rtop = R * Math.cos(lat);
-    // const angle = 2 * this.toGrad(Math.asin(X / (2000 * Rtop)));
-    this.x += (X * 180) / (Math.PI * Rtop);
-    return this;
-  }
-
-  offsetMetrY(Y: number): this {
-    this.y += Y * Point.degreePerMetr;
-    return this;
-  }
-
-  toGrad(n: number): number {
-    return (n * 180) / Math.PI;
-  }
-
-  toRad(n: number): number {
-    return (n * Math.PI) / 180;
   }
 
   length(point: Point): number {
@@ -179,10 +143,7 @@ export class Point extends Primitive {
   toString(): string {
     return `${Math.round(this.x)}x${Math.round(this.y)}`;
   }
-
-  /**
-   * Этот запрос влияет на сборку дерева флагов
-   */
+ 
   toKey(): string {
     return `${this.x}x${this.y}`;
   }

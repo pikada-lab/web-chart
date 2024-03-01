@@ -81,6 +81,24 @@ export class Line extends Primitive {
   }
 
   /**
+   * Возвращает угол в радианах
+   */
+  getAngle(): number {
+    try {
+      const dx = this.p2.X - this.p1.X;
+      const dy = this.p2.Y - this.p1.Y;
+      let p = Math.abs(dx) / dx;
+      if (Number.isNaN(p)) {
+        p = 1;
+      }
+      return -Math.PI / 2 + p * Math.acos(dy / Math.sqrt(dx ** 2 + dy ** 2));
+    } catch (ex) {
+      console.warn(ex);
+      return 0;
+    }
+  }
+
+  /**
    * Возвращает азимут отрезка в проекции экрана
    */
   getGeoAzimuth(): number {
@@ -196,7 +214,7 @@ export class Line extends Primitive {
     );
   }
 
-  getCenterPoint(): Point {
+  getCenter(): Point {
     return this.getPointByProection(0.5);
   }
 
