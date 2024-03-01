@@ -36,7 +36,7 @@ export class CanvasController {
     btTest?.addEventListener("click", () => {
       this.test();
     });
-    const canvas = document.getElementById("canvas");
+    const canvas = document.getElementById("svg");
     canvas!.addEventListener("mousedown", (e) => {
       e.preventDefault();
       this.onMousedown(new Point(e.offsetX, e.offsetY));
@@ -110,7 +110,7 @@ export class CanvasController {
     this.drawer.clear();
     this.drawableObjects.forEach((object) => {
       object.draw(this.drawer);
-    }); 
+    });
   }
 
   onMousedown(point: Point): void {
@@ -158,8 +158,8 @@ export class CanvasController {
           point.Y - this.dragOriginal.Y,
         );
         this.drag.drag(this.dragOffset);
-      }
-      this.render();
+        this.render();
+      } 
     }
   }
 }

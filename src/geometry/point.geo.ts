@@ -80,9 +80,13 @@ export class Point extends Primitive {
     return [this.x, this.y];
   }
 
+  toSVG(): string {
+    return `${this.x},${this.y}`;
+  }
+
   toObject(): PointObject {
     return { longitude: this.x, latitude: this.y };
-  } 
+  }
 
   get X(): number {
     return this.x;
@@ -143,7 +147,7 @@ export class Point extends Primitive {
   toString(): string {
     return `${Math.round(this.x)}x${Math.round(this.y)}`;
   }
- 
+
   toKey(): string {
     return `${this.x}x${this.y}`;
   }

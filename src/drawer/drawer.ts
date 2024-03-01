@@ -15,7 +15,7 @@ export interface LineOptions {
 export interface TextOptions {
   color?: string;
   fontSize?: number;
-  fotnFamily?: number;
+  fotnFamily?: string;
   bold?: boolean;
   italic?: boolean;
   align?: 'left' | 'right' | 'center';
