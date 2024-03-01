@@ -1,14 +1,7 @@
-import { CanvasController } from "./canvas.controller";
-import { CanvasDrawer } from "./drawer/canvas.drawer"; 
-import { SvgDrawer } from "./drawer/svg.drawer";
-import { Line } from "./geometry/line.geo";
-import { Point } from "./geometry/point.geo";
-import { LineController } from "./line.controller";
+import { Line } from "../geometry/line.geo";
+import { Point } from "../geometry/point.geo";
+import { SvgDrawer } from "./svg.drawer";
 
-// var drawer = new CanvasDrawer("canvas");
- 
-// var controller = new LineController(drawer);
-// controller.test();
 const drawer = new SvgDrawer("svg");
 
 drawer.circle(new Point(100, 100), 20, {borderColor: '#3f0'})
