@@ -1,11 +1,11 @@
 import { EventShape } from "../drawer/shapes/event.shape";
 import { Shape } from "../drawer/shapes/shape";
 import { TaskShape } from "../drawer/shapes/task.shape";
-import { Point } from "../geometry/point.geo";
+import { Point } from "../lib/geometry/point.geo";
 import { Result } from "../lib/result";
-import { Task } from "../model/task";
-import { TaskEvent } from "../model/task-event";
-import { WebChart } from "../model/web-chart";
+import { Task } from "../model/task/task";
+import { TaskEvent } from "../model/task-event/task-event";
+import { WebChart } from "../model/web-chart/web-chart";
 import { DocDTO } from "./doc.dto";
 
 export class Doc {
@@ -33,6 +33,15 @@ export class Doc {
         this.shapes.push(new TaskShape(t, start, end));
       }
     }
+  }
+
+  addEvent(name: string): void {
+    const e = new TaskEvent();
+    console.log(e);
+    this.web.addBulk([e]);
+    const shape = new EventShape(e, new Point(100,100));
+    this.shapes.push(shape);
+    this.events.set(e.getId(), shape);
   }
   /*
   auto(): void {

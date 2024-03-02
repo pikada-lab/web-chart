@@ -1,0 +1,307 @@
+<svg id="svg" width="1920" height="1080" viewBox="0 0 1920 1080" type="image/svg+xml"
+    xmlns="http://www.w3.org/2000/svg">
+    <g>
+        <circle cx="120" cy="360" r="20" stroke="#000" fill="none" stroke-width="1"></circle>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="120" y="360"
+        style=" font-family: sans-serif; fill: rgb(34, 34, 34);">1</text>
+    <g>
+        <circle cx="320" cy="100" r="20" stroke="#000" fill="none" stroke-width="1"></circle>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="320" y="100"
+        style=" font-family: sans-serif; fill: rgb(34, 34, 34);">2</text>
+    <g>
+        <circle cx="360" cy="180" r="20" stroke="#000" fill="none" stroke-width="1"></circle>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="360" y="180"
+        style=" font-family: sans-serif; fill: rgb(34, 34, 34);">3</text>
+    <g>
+        <circle cx="280" cy="360" r="20" stroke="#000" fill="none" stroke-width="1"></circle>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="280" y="360"
+        style=" font-family: sans-serif; fill: rgb(34, 34, 34);">4</text>
+    <g>
+        <circle cx="360" cy="260" r="20" stroke="#000" fill="none" stroke-width="1"></circle>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="360" y="260"
+        style=" font-family: sans-serif; fill: rgb(34, 34, 34);">5</text>
+    <g>
+        <circle cx="560" cy="260" r="20" stroke="#000" fill="none" stroke-width="1"></circle>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="560" y="260"
+        style=" font-family: sans-serif; fill: rgb(34, 34, 34);">6</text>
+    <g>
+        <circle cx="600" cy="360" r="20" stroke="#000" fill="none" stroke-width="1"></circle>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="600" y="360"
+        style=" font-family: sans-serif; fill: rgb(34, 34, 34);">7</text>
+    <g>
+        <circle stroke-dasharray="3, 3" cx="600" cy="360" r="16" stroke="#000" fill="none" stroke-width="1"></circle>
+    </g>
+    <g>
+        <line stroke="#000" stroke-width="1" x1="600" y1="380" x2="600" y2="430"></line>
+    </g>
+    <rect x="600" y="382" width="250" height="53" stroke="#fff" stroke-width="1" fill="#fff"></rect><text
+        text-anchor="start" alignment-baseline="middle" font-size="12px" x="610" y="394"
+        style=" font-family: sans-serif; fill: rgb(34, 34, 34);">Ранний
+        срок совершения события: 6w</text><text text-anchor="start" alignment-baseline="middle" font-size="12px" x="610"
+        y="409" style=" font-family: sans-serif; fill: rgb(34, 34, 34);">Поздний
+        срок совершения события: 40w</text><text text-anchor="start" alignment-baseline="middle" font-size="12px"
+        x="610" y="424" style=" font-family: sans-serif; fill: rgb(34, 34, 34);">Резерв
+        времени для события: 34w</text>
+    <g>
+        <circle cx="540" cy="480" r="20" stroke="#000" fill="none" stroke-width="1"></circle>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="540" y="480"
+        style=" font-family: sans-serif; fill: rgb(34, 34, 34);">8</text>
+    <g>
+        <circle cx="440" cy="580" r="20" stroke="#000" fill="none" stroke-width="1"></circle>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="440" y="580"
+        style=" font-family: sans-serif; fill: rgb(34, 34, 34);">9</text>
+    <g>
+        <circle cx="380" cy="680" r="20" stroke="#000" fill="none" stroke-width="1"></circle>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="380" y="680"
+        style=" font-family: sans-serif; fill: rgb(34, 34, 34);">10</text>
+    <g>
+        <circle cx="740" cy="260" r="20" stroke="#000" fill="none" stroke-width="1"></circle>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="740" y="260"
+        style=" font-family: sans-serif; fill: rgb(34, 34, 34);">11</text>
+    <g>
+        <circle cx="860" cy="360" r="20" stroke="#000" fill="none" stroke-width="1"></circle>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="860" y="360"
+        style=" font-family: sans-serif; fill: rgb(34, 34, 34);">12</text>
+    <g>
+        <circle cx="580" cy="580" r="20" stroke="#000" fill="none" stroke-width="1"></circle>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="580" y="580"
+        style=" font-family: sans-serif; fill: rgb(34, 34, 34);">13</text>
+    <g>
+        <circle cx="620" cy="680" r="20" stroke="#000" fill="none" stroke-width="1"></circle>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="620" y="680"
+        style=" font-family: sans-serif; fill: rgb(34, 34, 34);">14</text>
+    <g>
+        <circle cx="820" cy="180" r="20" stroke="#000" fill="none" stroke-width="1"></circle>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="820" y="180"
+        style=" font-family: sans-serif; fill: rgb(34, 34, 34);">15</text>
+    <g>
+        <circle cx="740" cy="480" r="20" stroke="#000" fill="none" stroke-width="1"></circle>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="740" y="480"
+        style=" font-family: sans-serif; fill: rgb(34, 34, 34);">16</text>
+    <g>
+        <circle cx="1000" cy="360" r="20" stroke="#000" fill="none" stroke-width="1"></circle>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="1000" y="360"
+        style=" font-family: sans-serif; fill: rgb(34, 34, 34);">17</text>
+    <g>
+        <circle cx="880" cy="580" r="20" stroke="#000" fill="none" stroke-width="1"></circle>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="880" y="580"
+        style=" font-family: sans-serif; fill: rgb(34, 34, 34);">18</text>
+    <g>
+        <circle cx="780" cy="100" r="20" stroke="#000" fill="none" stroke-width="1"></circle>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="780" y="100"
+        style=" font-family: sans-serif; fill: rgb(34, 34, 34);">19</text>
+    <g>
+        <circle cx="960" cy="480" r="20" stroke="#000" fill="none" stroke-width="1"></circle>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="960" y="480"
+        style=" font-family: sans-serif; fill: rgb(34, 34, 34);">20</text>
+    <g>
+        <circle cx="940" cy="680" r="20" stroke="#000" fill="none" stroke-width="1"></circle>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="940" y="680"
+        style=" font-family: sans-serif; fill: rgb(34, 34, 34);">21</text>
+    <g>
+        <circle cx="1120" cy="360" r="20" stroke="#000" fill="none" stroke-width="1"></circle>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="1120" y="360"
+        style=" font-family: sans-serif; fill: rgb(34, 34, 34);">22</text>
+    <g>
+        <circle cx="1040" cy="580" r="20" stroke="#000" fill="none" stroke-width="1"></circle>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="1040" y="580"
+        style=" font-family: sans-serif; fill: rgb(34, 34, 34);">23</text>
+    <g>
+        <circle cx="1180" cy="100" r="20" stroke="#000" fill="none" stroke-width="1"></circle>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="1180" y="100"
+        style=" font-family: sans-serif; fill: rgb(34, 34, 34);">24</text>
+    <g>
+        <circle cx="1240" cy="360" r="20" stroke="#000" fill="none" stroke-width="1"></circle>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="1240" y="360"
+        style=" font-family: sans-serif; fill: rgb(34, 34, 34);">25</text>
+    <g>
+        <circle cx="1400" cy="360" r="20" stroke="#000" fill="none" stroke-width="1"></circle>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="1400" y="360"
+        style=" font-family: sans-serif; fill: rgb(34, 34, 34);">26</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="132.19421521699385" y1="344.147520217908" x2="298.05041260941107"
+            y2="128.53446360776562"></line>
+        <polyline
+            points="307.8057847830062,115.852479782092 290.85582563138473,128.04669499908587 298.05041260941107,128.53446360776562 300.36731350063997,135.36322412928214 307.8057847830062,115.852479782092"
+            fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="210.489" y="222.683"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">3w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="136" y1="348" x2="331.2" y2="201.6"></line>
+        <polyline points="344,192 324.4,199.2 331.2,201.6 331.6,208.8 344,192" fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="232.8" y="260.4"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">2w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="138.46153846153845" y1="352.3076923076923" x2="326.7692307692308"
+            y2="273.8461538461538"></line>
+        <polyline
+            points="341.53846153846155,267.6923076923077 320.7692307692308,269.8461538461538 326.7692307692308,273.8461538461538 325.3846153846154,280.9230769230769 341.53846153846155,267.6923076923077"
+            fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="235.385" y="298.923"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">3w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="140" y1="360" x2="244" y2="360"></line>
+        <polyline points="260,360 240,354 244,360 240,366 260,360" fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="200" y="348"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">4w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="300" y1="360" x2="564" y2="360"></line>
+        <polyline points="580,360 560,354 564,360 560,366 580,360" fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="440" y="348"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">2w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="298.15918769000905" y1="368.38116354923494" x2="507.31346215798374"
+            y2="464.9139056113771"></line>
+        <polyline
+            points="521.840812309991,471.61883645076506 506.1959736847524,457.7899165945274 507.31346215798374,464.9139056113771 501.1672755552114,468.6854292085328 521.840812309991,471.61883645076506"
+            fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="415.029" y="409.104"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">2w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="291.7634339535009" y1="376.1747216860638" x2="418.82581888369833"
+            y2="550.8855009650852"></line>
+        <polyline
+            points="428.2365660464991,563.8252783139362 421.3255485988173,544.1215264418222 418.82581888369833,550.8855009650852 411.62071558717906,551.1795868139227 428.2365660464991,563.8252783139362"
+            fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="369.705" y="462.942"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">3w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="285.96549986271896" y1="379.0895995607006" x2="369.2621002471059"
+            y2="645.638720790739"></line>
+        <polyline
+            points="374.03450013728104,660.9104004392995 373.79588014277226,640.0311509197832 369.2621002471059,645.638720790739 362.3421204063519,643.6104508374146 374.03450013728104,660.9104004392995"
+            fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="341.454" y="516.421"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">5w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="380" y1="260" x2="524" y2="260"></line>
+        <polyline points="540,260 520,254 524,260 520,266 540,260" fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="460" y="248"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">4w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="580" y1="260" x2="704" y2="260"></line>
+        <polyline points="720,260 700,254 704,260 700,266 720,260" fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="650" y="248"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">12w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="620" y1="360" x2="824" y2="360"></line>
+        <polyline points="840,360 820,354 824,360 820,366 840,360" fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="730" y="348"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">2w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="380" y1="180" x2="784" y2="180"></line>
+        <polyline points="800,180 780,174 784,180 780,186 800,180" fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="590" y="168"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">4w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="460" y1="580" x2="544" y2="580"></line>
+        <polyline points="560,580 540,574 544,580 540,586 560,580" fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="510" y="568"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">4w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="400" y1="680" x2="584" y2="680"></line>
+        <polyline points="600,680 580,674 584,680 580,686 600,680" fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="500" y="668"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">12w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="560" y1="480" x2="704" y2="480"></line>
+        <polyline points="720,480 700,474 704,480 700,486 720,480" fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="640" y="468"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">6w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="600" y1="580" x2="844" y2="580"></line>
+        <polyline points="860,580 840,574 844,580 840,586 860,580" fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="730" y="568"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">16w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="755.3644255919476" y1="272.8036879932896" x2="832.3440339344944"
+            y2="336.9533616120787"></line>
+        <polyline
+            points="844.6355744080524,347.1963120067104 833.1122552140918,329.78329633583655 832.3440339344944,336.9533616120787 825.430042418118,339.00195169100505 844.6355744080524,347.1963120067104"
+            fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="807.682" y="300.781"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">2w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="880" y1="360" x2="964" y2="360"></line>
+        <polyline points="980,360 960,354 964,360 960,366 980,360" fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="930" y="348"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">3w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="640" y1="680" x2="904" y2="680"></line>
+        <polyline points="920,680 900,674 904,680 900,686 920,680" fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="780" y="668"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">14w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="834.142135623731" y1="194.14213562373095" x2="974.5441558772843"
+            y2="334.5441558772843"></line>
+        <polyline
+            points="985.857864376269,345.85786437626905 975.9583694396574,327.47308806541884 974.5441558772843,334.5441558772843 967.4730880654188,335.95836943965736 985.857864376269,345.85786437626905"
+            fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="918.485" y="261.515"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">3w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="1020" y1="360" x2="1084" y2="360"></line>
+        <polyline points="1100,360 1080,354 1084,360 1080,366 1100,360" fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="1060" y="348"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">2w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="954.142135623731" y1="665.857864376269" x2="1014.5441558772844"
+            y2="605.4558441227157"></line>
+        <polyline
+            points="1025.8578643762692,594.142135623731 1007.4730880654189,604.0416305603426 1014.5441558772844,605.4558441227157 1015.9583694396575,612.5269119345812 1025.8578643762692,594.142135623731"
+            fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="981.515" y="621.515"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">12w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="1053.4534558799262" y1="565.2011985320811" x2="1215.7837794161328"
+            y2="386.63784264225393"></line>
+        <polyline
+            points="1226.5465441200738,374.79880146791885 1208.653447799772,385.56156617185985 1215.7837794161328,386.63784264225393 1217.5327286805232,393.63363969981555 1226.5465441200738,374.79880146791885"
+            fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="1131.12" y="461.928"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">2w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="1260" y1="360" x2="1364" y2="360"></line>
+        <polyline points="1380,360 1360,354 1364,360 1360,366 1380,360" fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="1320" y="348"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">1w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="900" y1="580" x2="1004" y2="580"></line>
+        <polyline points="1020,580 1000,574 1004,580 1000,586 1020,580" fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="960" y="568"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">12w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="760" y1="480" x2="924" y2="480"></line>
+        <polyline points="940,480 920,474 924,480 920,486 940,480" fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="850" y="468"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">12w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="976" y1="468" x2="1091.2" y2="381.6"></line>
+        <polyline points="1104,372 1084.4,379.2 1091.2,381.6 1091.6,388.8 1104,372" fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="1032.8" y="410.4"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">2w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="340" y1="100" x2="744" y2="100"></line>
+        <polyline points="760,100 740,94 744,100 740,106 760,100" fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="550" y="88"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">4w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="800" y1="100" x2="1144" y2="100"></line>
+        <polyline points="1160,100 1140,94 1144,100 1140,106 1160,100" fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="980" y="88"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">6w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="1192.9188448293235" y1="115.26772570738228" x2="1376.7460793072178"
+            y2="332.51809372671187"></line>
+        <polyline
+            points="1387.0811551706765,344.7322742926177 1378.7426280535678,325.5888951364384 1376.7460793072178,332.51809372671187 1369.5819926291383,333.3402020340325 1387.0811551706765,344.7322742926177"
+            fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="1299.16" y="222.249"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">2w</text>
+    <g>
+        <line stroke="#000" stroke-width="2" x1="1140" y1="360" x2="1204" y2="360"></line>
+        <polyline points="1220,360 1200,354 1204,360 1200,366 1220,360" fill="#000"></polyline>
+    </g><text text-anchor="middle" alignment-baseline="middle" font-size="18px" x="1180" y="348"
+        style=" font-family: sans-serif; fill: rgb(0, 0, 0);">2w</text>
+    <rect x="10" y="10" width="1590" height="790" stroke="#000" stroke-width="1" fill="transparent"></rect>
+</svg>

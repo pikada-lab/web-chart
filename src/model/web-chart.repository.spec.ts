@@ -1,7 +1,7 @@
-import { Task } from "./task";
-import { TaskEvent } from "./task-event";
-import { TypeEvent } from "./type-event.enum";
-import { WebChart } from "./web-chart";
+import { Task } from "./task/task";
+import { TaskEvent } from "./task-event/task-event";
+import { TypeEvent } from "./task-event/type-event.enum";
+import { WebChart } from "./web-chart/web-chart";
 import { WebChartRepository } from "./web-chart.repository";
 
 describe("Репозиторий сетевых графиков", () => {

@@ -1,5 +1,5 @@
 import { TaskType } from "./task-type.enum";
-import { WorkDTO } from "./work/index";
+import { WorkDTO } from "../work/index";
 
 export interface TaskDTO {
   id: number;

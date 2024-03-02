@@ -1,5 +1,5 @@
-import { Line } from "../geometry/line.geo";
-import { Point } from "../geometry/point.geo";
+import { Line } from "../lib/geometry/line.geo";
+import { Point } from "../lib/geometry/point.geo";
 
 export interface CircleOptions {
   dashed?: boolean;

@@ -1,13 +1,13 @@
-import { TaskEvent } from "./task-event";
-import { Duration } from "../lib/duration";
-import { Result } from "../lib/result";
+import { TaskEvent } from "../task-event/task-event";
+import { Duration } from "../../lib/duration";
+import { Result } from "../../lib/result";
 import { TaskType } from "./task-type.enum";
 import { TaskDTO } from "./task.dto";
-import { WorkDTO, WorkType } from "./work/";
-import { ProbabilisticWork } from "./work/probabilistic-work";
-import { NotSetWork } from "./work/not-set-work";
-import { DeterministicWork } from "./work/deterministic-work";
-import { Work } from "./work/work";
+import { WorkDTO, WorkType } from "../work";
+import { ProbabilisticWork } from "../work/probabilistic-work";
+import { NotSetWork } from "../work/not-set-work";
+import { DeterministicWork } from "../work/deterministic-work";
+import { Work } from "../work/work";
 
 /**
  * Работа

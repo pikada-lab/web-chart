@@ -1,4 +1,4 @@
-import { Duration } from "../lib/duration";
+import { Duration } from "../../lib/duration";
 import { TaskEvent } from "./task-event";
 import { TypeEvent } from "./type-event.enum";
 

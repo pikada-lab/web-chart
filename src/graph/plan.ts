@@ -2,9 +2,9 @@ import { EventShape } from "../drawer/shapes/event.shape";
 import { FrameShape } from "../drawer/shapes/frame.shape";
 import { Shape } from "../drawer/shapes/shape";
 import { TaskShape } from "../drawer/shapes/task.shape";
-import { Point } from "../geometry/point.geo";
+import { Point } from "../lib/geometry/point.geo";
 import { StandardCalendar } from "../model/calendar/standard-calendar";
-import { WebChart } from "../model/web-chart";
+import { WebChart } from "../model/web-chart/web-chart";
 
 export class Plan {
   private id: number = 1;

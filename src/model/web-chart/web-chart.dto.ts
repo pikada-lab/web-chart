@@ -1,5 +1,5 @@
-import { TaskEventDTO } from "./task-event.dto";
-import { TaskDTO } from "./task.dto";
+import { TaskEventDTO } from "../task-event/task-event.dto";
+import { TaskDTO } from "../task/task.dto";
 
 export interface WebChartDTO {
   id: number;

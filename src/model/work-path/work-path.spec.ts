@@ -1,8 +1,8 @@
-import { Duration } from "../lib/duration";
-import { DeterministicWork } from "./work/deterministic-work";
-import { Task } from "./task";
-import { TaskEvent } from "./task-event";
-import { TypeEvent } from "./type-event.enum";
+import { Duration } from "../../lib/duration";
+import { DeterministicWork } from "../work/deterministic-work";
+import { Task } from "../task/task";
+import { TaskEvent } from "../task-event/task-event";
+import { TypeEvent } from "../task-event/type-event.enum";
 import { WorkPath } from "./work-path";
 
 describe("Путь в сетевом графике", () => {

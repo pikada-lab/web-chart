@@ -1,6 +1,6 @@
 import { Result } from "../lib/result";
-import { WebChart } from "./web-chart";
-import { WebChartDTO } from "./web-chart.dto";
+import { WebChart } from "./web-chart/web-chart";
+import { WebChartDTO } from "./web-chart/web-chart.dto";
 
 export class WebChartRepository {
   private store = new Map<number, WebChartDTO>();

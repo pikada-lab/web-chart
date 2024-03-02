@@ -1,6 +1,6 @@
-import { Duration } from "../lib/duration";
-import { Result } from "../lib/result";
-import { Task } from "./task";
+import { Duration } from "../../lib/duration";
+import { Result } from "../../lib/result";
+import { Task } from "../task/task";
 import { TaskEventDTO } from "./task-event.dto";
 import { TypeEvent } from "./type-event.enum";
 

@@ -1,6 +1,6 @@
-import { Duration } from "../lib/duration";
-import { DeterministicWork } from "./work/deterministic-work";
-import { ProbabilisticWork } from "./work/probabilistic-work";
+import { Duration } from "../../lib/duration";
+import { DeterministicWork } from "../work/deterministic-work";
+import { ProbabilisticWork } from "../work/probabilistic-work";
 import { Task } from "./task";
 import { TaskType } from "./task-type.enum";
 

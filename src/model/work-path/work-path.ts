@@ -1,6 +1,6 @@
-import { Duration } from "../lib/duration";
-import { Task } from "./task";
-import { TaskEvent } from "./task-event";
+import { Duration } from "../../lib/duration";
+import { Task } from "../task/task";
+import { TaskEvent } from "../task-event/task-event";
 
 export class WorkPath {
   private name = "L";

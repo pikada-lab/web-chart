@@ -8,11 +8,11 @@ import {
   isDragable,
   isSelectable,
 } from "./drawer/shapes/shape";
-import { Point } from "./geometry/point.geo";
+import { Point } from "./lib/geometry/point.geo";
 import { Doc } from "./graph/doc";
 import { Plan } from "./graph/plan";
 import { dto } from "./model/testing/index.e2e.dto";
-import { WebChart } from "./model/web-chart";
+import { WebChart } from "./model/web-chart/web-chart";
 
 export class LineController {
   private move: boolean = false;

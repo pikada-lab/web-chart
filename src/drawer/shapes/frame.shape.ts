@@ -1,4 +1,4 @@
-import { Point } from "../../geometry/point.geo";
+import { Point } from "../../lib/geometry/point.geo";
 import { Drawer } from "../drawer";
 import { Shape } from "./shape";
 

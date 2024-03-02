@@ -2,8 +2,8 @@ import { CanvasController } from "./canvas.controller";
 import { CanvasDrawer } from "./drawer/canvas.drawer";
 import { Drawer } from "./drawer/drawer";
 import { SvgDrawer } from "./drawer/svg.drawer";
-import { Line } from "./geometry/line.geo";
-import { Point } from "./geometry/point.geo";
+import { Line } from "./lib/geometry/line.geo";
+import { Point } from "./lib/geometry/point.geo";
 import { LineController } from "./line.controller";
 
 const drawerSvg = new SvgDrawer("svg");

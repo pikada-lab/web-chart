@@ -1,6 +1,6 @@
-import { Line } from "../../geometry/line.geo";
-import { Point } from "../../geometry/point.geo";
-import { Task } from "../../model/task";
+import { Line } from "../../lib/geometry/line.geo";
+import { Point } from "../../lib/geometry/point.geo";
+import { Task } from "../../model/task/task";
 import { Drawer } from "../drawer";
 import { EventShape } from "./event.shape";
 import { Selectable, Shape } from "./shape";
@@ -32,7 +32,6 @@ export class TaskShape implements Shape, Selectable {
       return false;
     }
     const length = new Line(point, endLine.getPointByProection(CF)!).getLength();
-    console.log(this.task.getDuration().value, CF, length,CF >= 0 && CF <= 1, length < 10 )
     return CF >= 0 && CF <= 1 && length < 10;
   }
 
@@ -70,20 +69,7 @@ export class TaskShape implements Shape, Selectable {
       { fontSize: tineMode ? 12 : 18, color: this.isSelect ? "#888" : "#000" },
     );
 
-    if (this.isSelect) {
-
-      drawer.text(
-        `Свободный резерв времени: ${this.task.getFreeTimeReserve()?.value.value ?? 0}`,
-        center.offsetY(10).offsetX(10),
-        0,
-        {   },
-      );
-      drawer.text(
-        `Полный резерв времени: ${this.task.getFullTimeReserve()?.value.value ?? 0}`,
-        center.offsetY(25).offsetX(10),
-        0,
-        {   },
-      );
+    if (this.isSelect) { 
     }
   }
 }

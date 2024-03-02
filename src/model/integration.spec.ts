@@ -1,8 +1,8 @@
 import { Duration } from "../lib/duration";
 import { DeterministicWork } from "./work/deterministic-work";
-import { Task } from "./task";
-import { TaskEvent } from "./task-event";
-import { TypeEvent } from "./type-event.enum";
+import { Task } from "./task/task";
+import { TaskEvent } from "./task-event/task-event";
+import { TypeEvent } from "./task-event/type-event.enum";
 
 describe("Интеграционный тест работы и события", () => {
   it("Работа должна корректно соединяться с событиями", () => {

@@ -1,4 +1,4 @@
-import { WebChart } from "./web-chart";
+import { WebChart } from "./web-chart/web-chart";
 
 interface Repository {
   get(id: number): Promise<WebChart>;

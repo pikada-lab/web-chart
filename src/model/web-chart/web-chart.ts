@@ -1,9 +1,9 @@
-import { Result } from "../lib/result";
-import { Calendar } from "./calendar/calendar";
-import { Task } from "./task";
-import { TaskEvent } from "./task-event";
+import { Result } from "../../lib/result";
+import { Calendar } from "../calendar/calendar";
+import { Task } from "../task/task";
+import { TaskEvent } from "../task-event/task-event";
 import { WebChartDTO } from "./web-chart.dto";
-import { WorkPath } from "./work-path";
+import { WorkPath } from "../work-path/work-path";
 
 export class WebChart {
   private start: TaskEvent | null = null;

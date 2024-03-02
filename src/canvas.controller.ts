@@ -8,10 +8,10 @@ import {
   isDragable,
   isSelectable,
 } from "./drawer/shapes/shape";
-import { Point } from "./geometry/point.geo";
+import { Point } from "./lib/geometry/point.geo";
 import { Doc } from "./graph/doc";
 import { dto } from "./model/testing/index.e2e.dto";
-import { WebChart } from "./model/web-chart";
+import { WebChart } from "./model/web-chart/web-chart";
 
 export class CanvasController {
   private move: boolean = false;
@@ -49,6 +49,19 @@ export class CanvasController {
     canvas!.addEventListener("mousemove", (e) => {
       e.preventDefault();
       this.onMousemove(new Point(e.offsetX, e.offsetY));
+    });
+    window!.addEventListener("keydown", (e) => {
+        console.log(e);
+      e.preventDefault();
+      if (e.code === 'KeyD') {
+        // const name = prompt('Введите название работы');
+        this.doc!.addEvent('!');
+        this.clear();
+        this.doc!.getShapes().forEach((s) => {
+            this.addElement(s);
+          });
+        this.render();
+      }
     });
   }
 
@@ -114,7 +127,6 @@ export class CanvasController {
   }
 
   onMousedown(point: Point): void {
-    console.log(point);
     this.move = true;
     for (const object of this.drawableObjects) {
       if (!isSelectable(object)) {
