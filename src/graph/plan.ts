@@ -20,12 +20,17 @@ export class Plan {
   constructor(private readonly web: WebChart) {
     let pathY = 0;
 
-    const max = (this.canvasSize - 2* this.framePadding - 2 * this.pathPadding) / this.web.getMaxLengthPath()!.length().getDurationOnMinutes();
-    for (let path of this.web.getPathes().value) { 
+    const max =
+      (this.canvasSize - 2 * this.framePadding - 2 * this.pathPadding) /
+      this.web.getMaxLengthPath()!.length().getDurationOnMinutes();
+    for (let path of this.web.getPathes().value) {
       this.events.set(path.getName(), new Map());
       const frame = new FrameShape(
         new Point(this.framePadding, this.framePadding + pathY),
-        new Point(this.canvasSize - 2 * this.framePadding, this.framePadding + this.frameHeight + pathY),
+        new Point(
+          this.canvasSize - 2 * this.framePadding,
+          this.framePadding + this.frameHeight + pathY,
+        ),
       );
       frame.setText(
         path.getName() +
@@ -40,7 +45,8 @@ export class Plan {
         const shape = new EventShape(
           e,
           new Point(
-            this.pathPadding + e.getEarlyDeadline()!.getDurationOnMinutes() * max,
+            this.pathPadding +
+              e.getEarlyDeadline()!.getDurationOnMinutes() * max,
             this.framePadding + Math.round(this.frameHeight / 2) + pathY,
           ),
         );
@@ -60,7 +66,7 @@ export class Plan {
       pathY += this.frameHeight + this.frameGap;
     }
 
-    const plan = this.web.getListOfWork(new Date(), new StandardCalendar())
+    const plan = this.web.getListOfWork(new Date(), new StandardCalendar());
     console.table(plan);
   }
 

@@ -12,6 +12,9 @@ import { Point } from "./lib/geometry/point.geo";
 import { Doc } from "./graph/doc";
 import { dto } from "./model/testing/index.e2e.dto";
 import { WebChart } from "./model/web-chart/web-chart";
+import { Action } from "./editor/actions/action";
+import { StandardCalendar } from "./model/calendar/standard-calendar";
+import { ZoomDrawer } from "./drawer/zoom.drawer";
 
 export class CanvasController {
   private move: boolean = false;
@@ -36,7 +39,11 @@ export class CanvasController {
     btTest?.addEventListener("click", () => {
       this.test();
     });
-    const canvas = document.getElementById("svg");
+    const canvas = document.getElementById(drawer.getId());
+    canvas!.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      this.onWheel(e, new Point(e.offsetX, e.offsetY));
+    });
     canvas!.addEventListener("mousedown", (e) => {
       e.preventDefault();
       this.onMousedown(new Point(e.offsetX, e.offsetY));
@@ -51,20 +58,19 @@ export class CanvasController {
       this.onMousemove(new Point(e.offsetX, e.offsetY));
     });
     window!.addEventListener("keydown", (e) => {
-        console.log(e);
+      console.log(e);
       e.preventDefault();
-      if (e.code === 'KeyD') {
+      if (e.code === "KeyD") {
         // const name = prompt('Введите название работы');
-        this.doc!.addEvent('!');
+        this.doc!.addEvent("!");
         this.clear();
         this.doc!.getShapes().forEach((s) => {
-            this.addElement(s);
-          });
+          this.addElement(s);
+        });
         this.render();
       }
     });
   }
-
   onSave(): void {
     if (!this.doc) {
       return;
@@ -98,7 +104,9 @@ export class CanvasController {
     wdto.tasks.forEach((t) => {
       t.work.normal = t.work.normal.replace(/(m)/, "w");
     });
-    return WebChart.Restore(wdto).value;
+    const web = WebChart.Restore(wdto).value;
+    console.table(web.getListOfWork(new Date(), new StandardCalendar()));
+    return web;
   }
 
   test(): void {
@@ -171,7 +179,22 @@ export class CanvasController {
         );
         this.drag.drag(this.dragOffset);
         this.render();
-      } 
+      }
+    }
+  }
+
+  onWheel(e: WheelEvent, point: Point) {
+    console.log(e.deltaY, point);
+    if (this.drawer instanceof ZoomDrawer) {
+      if (e.ctrlKey) {
+        this.drawer.plusZoom(-e.deltaY / 1000);
+      } else 
+      if (e.shiftKey) {
+        this.drawer.plusPan(Point.from([e.deltaY / 10, 0]))
+      } else {
+        this.drawer.plusPan(Point.from([0, e.deltaY / 10]))
+      }
+      this.render();
     }
   }
 }

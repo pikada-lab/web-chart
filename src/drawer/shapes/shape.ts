@@ -46,15 +46,14 @@ export function isSelectable(shape: unknown): shape is Selectable {
 }
 
 export function isDragable(shape: unknown): shape is Dragable {
-    return (
-      typeof shape === "object" &&
-      !!shape &&
-      "drag" in shape &&
-      typeof shape.drag === "function" &&
-      shape.drag.length >= 1 &&
-      "drop" in shape &&
-      typeof shape.drop === "function" &&
-      shape.drop.length >= 1
-    );
-  }
-  
+  return (
+    typeof shape === "object" &&
+    !!shape &&
+    "drag" in shape &&
+    typeof shape.drag === "function" &&
+    shape.drag.length >= 1 &&
+    "drop" in shape &&
+    typeof shape.drop === "function" &&
+    shape.drop.length >= 1
+  );
+}

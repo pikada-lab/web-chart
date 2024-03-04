@@ -28,10 +28,13 @@ export class TaskShape implements Shape, Selectable {
       line.createPointOnLineEnd(-r2),
     );
     const CF = endLine.ortoProection(point);
-    if (CF < 0 || CF > 1 ) {
+    if (CF < 0 || CF > 1) {
       return false;
     }
-    const length = new Line(point, endLine.getPointByProection(CF)!).getLength();
+    const length = new Line(
+      point,
+      endLine.getPointByProection(CF)!,
+    ).getLength();
     return CF >= 0 && CF <= 1 && length < 10;
   }
 
@@ -69,7 +72,7 @@ export class TaskShape implements Shape, Selectable {
       { fontSize: tineMode ? 12 : 18, color: this.isSelect ? "#888" : "#000" },
     );
 
-    if (this.isSelect) { 
+    if (this.isSelect) {
     }
   }
 }

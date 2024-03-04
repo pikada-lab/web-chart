@@ -25,11 +25,11 @@ export class WorkPath {
   }
 
   getEvents(): TaskEvent[] {
-    return this.path.filter((r) => (r instanceof TaskEvent)) as TaskEvent[];
+    return this.path.filter((r) => r instanceof TaskEvent) as TaskEvent[];
   }
 
   getTasks(): Task[] {
-    return this.path.filter((r) => (r instanceof Task)) as Task[];
+    return this.path.filter((r) => r instanceof Task) as Task[];
   }
 
   toString(): string {

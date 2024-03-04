@@ -39,7 +39,7 @@ export class Doc {
     const e = new TaskEvent();
     console.log(e);
     this.web.addBulk([e]);
-    const shape = new EventShape(e, new Point(100,100));
+    const shape = new EventShape(e, new Point(100, 100));
     this.shapes.push(shape);
     this.events.set(e.getId(), shape);
   }

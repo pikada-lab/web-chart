@@ -2,15 +2,24 @@ import { CanvasController } from "./canvas.controller";
 import { CanvasDrawer } from "./drawer/canvas.drawer";
 import { Drawer } from "./drawer/drawer";
 import { SvgDrawer } from "./drawer/svg.drawer";
+import { ZoomDrawer } from "./drawer/zoom.drawer";
 import { Line } from "./lib/geometry/line.geo";
 import { Point } from "./lib/geometry/point.geo";
 import { LineController } from "./line.controller";
 
 const drawerSvg = new SvgDrawer("svg");
 var drawerCanvas = new CanvasDrawer("canvas");
+const dSvg = new ZoomDrawer(drawerSvg);
+const cSvg = new ZoomDrawer(drawerCanvas);
+dSvg.setZoom(1.3);
+cSvg.setZoom(1.3);
+dSvg.setPan(Point.from([ 400, 200]))
+cSvg.setPan(Point.from([ 400, 200]))
 
-var controller = new CanvasController(drawerSvg);
+var controller = new CanvasController(dSvg);
+var controller2 = new CanvasController(cSvg);
 controller.test();
+controller2.test();
 // const drawer = new SvgDrawer("svg");
 // draw(drawer);
 

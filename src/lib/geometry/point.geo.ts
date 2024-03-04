@@ -171,4 +171,8 @@ export class Point extends Primitive {
   ltY(p2: Point): boolean {
     return this.Y < p2.Y;
   }
+
+  times(number: number): Point {
+    return new Point(this.X * number, this.y * number);
+  }
 }

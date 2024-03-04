@@ -5,5 +5,4 @@ export interface Action {
   onMouseUp(point: Point): void;
   onMouseMove(point: Point): void;
   onKeyPress(event: KeyboardEvent): void;
- 
 }

@@ -11,13 +11,17 @@ import {
 export class SvgDrawer implements Drawer {
   private status = "PENDING_CREATION";
   private svg: SVGElement | null;
-  constructor(id = "canvas") {
+  constructor(private readonly id = "canvas") {
     this.svg = document.getElementById(id) as SVGElement | null;
     if (!this.svg) {
       this.status = "ERROR";
       return;
     }
     this.status = "READY";
+  }
+
+  getId(): string {
+    return this.id;
   }
 
   circle(
@@ -68,12 +72,13 @@ export class SvgDrawer implements Drawer {
   }
 
   private lineAsLine(line: Line, options: LineOptions = {}): void {
+    const aSize = options.arrowSize ?? 1;
     const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
 
     // else {
     //   this.ctx.setLineDash([0]);
     // }
-    const specLine = line.createPointOnLineEnd(-16);
+    const specLine = line.createPointOnLineEnd(-16 * aSize);
 
     const svgLine = document.createElementNS(
       "http://www.w3.org/2000/svg",
@@ -99,11 +104,11 @@ export class SvgDrawer implements Drawer {
     g.appendChild(svgLine);
     this.svg!.appendChild(g);
     if (options.arrowEnd) {
-      // this.ctx.setLineDash([0]);
-      const arrowPoint1 = line.createPointOnLineEnd(-20);
-      const arrowPoint2 = line.createPointOnLineEnd(-16);
+      // this.ctx.setLineDash([0]); 
+      const arrowPoint1 = line.createPointOnLineEnd(-20 * aSize );
+      const arrowPoint2 = line.createPointOnLineEnd(-16 * aSize);
       const arrowLine = new Line(arrowPoint1, line.p2);
-      const [left, right] = arrowLine.createProectionPointStart(6);
+      const [left, right] = arrowLine.createProectionPointStart(6 * aSize);
 
       const svgArrow = document.createElementNS(
         "http://www.w3.org/2000/svg",
@@ -139,7 +144,7 @@ export class SvgDrawer implements Drawer {
 
     svgText.style.transform = `translate(${point.X}px, ${point.Y}px) rotate(${angle}rad)`;
 
-    // svgText.style.rotate = `${angle}rad`;  
+    // svgText.style.rotate = `${angle}rad`;
     // svgText.setAttribute("x", `${point.X}`);
     // svgText.setAttribute("y", `${point.Y}`);
     svgText.setAttribute("text-anchor", textAnchor);
@@ -172,7 +177,9 @@ export class SvgDrawer implements Drawer {
     this.svg?.appendChild(svgRect);
   }
   setCursor(cursor: "default" | "pointer" | "move"): void {
-    // this.canvas!.style.cursor = cursor;
+    if (this.svg) {
+      this.svg!.style.cursor = cursor;
+    }
   }
 
   private isReady(): boolean {

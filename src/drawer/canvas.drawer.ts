@@ -12,7 +12,7 @@ export class CanvasDrawer implements Drawer {
   private status = "PENDING_CREATION";
   private ctx!: CanvasRenderingContext2D;
   private canvas: HTMLCanvasElement | null;
-  constructor(id = "canvas") {
+  constructor(private readonly id = "canvas") {
     this.canvas = document.getElementById(id) as HTMLCanvasElement | null;
     if (!this.canvas) {
       this.status = "ERROR";
@@ -20,6 +20,10 @@ export class CanvasDrawer implements Drawer {
     }
     this.ctx = this.canvas.getContext("2d") as CanvasRenderingContext2D;
     this.status = "READY";
+  }
+
+  getId(): string {
+    return this.id;
   }
 
   circle(
@@ -62,12 +66,13 @@ export class CanvasDrawer implements Drawer {
   }
 
   private lineAsLine(line: Line, options: LineOptions = {}): void {
+    const aSize = options.arrowSize ?? 1;
     if (options.dashed) {
-      this.ctx.setLineDash([3, 3]);
+      this.ctx.setLineDash([3 * aSize, 3 * aSize]);
     } else {
       this.ctx.setLineDash([0]);
     }
-    const specLine = line.createPointOnLineEnd(-16);
+    const specLine = line.createPointOnLineEnd(-16 * aSize);
     this.ctx.lineWidth = options.with ?? 1;
     this.ctx.strokeStyle = options.borderColor ?? "#000";
     this.ctx.fillStyle = options.borderColor ?? "#000";
@@ -84,10 +89,10 @@ export class CanvasDrawer implements Drawer {
 
     if (options.arrowEnd) {
       this.ctx.setLineDash([0]);
-      const arrowPoint1 = line.createPointOnLineEnd(-20);
-      const arrowPoint2 = line.createPointOnLineEnd(-16);
+      const arrowPoint1 = line.createPointOnLineEnd(-20 * aSize);
+      const arrowPoint2 = line.createPointOnLineEnd(-16 * aSize);
       const arrowLine = new Line(arrowPoint1, line.p2);
-      const [left, right] = arrowLine.createProectionPointStart(6);
+      const [left, right] = arrowLine.createProectionPointStart(6 * aSize);
 
       this.ctx.beginPath();
       this.ctx.lineWidth = 0;
